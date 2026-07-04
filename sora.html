@@ -42,9 +42,6 @@
             padding: 2rem 1.5rem 4rem;
         }
 
-        /* ============================================================
-           HERO
-        ============================================================ */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -80,9 +77,6 @@
             font-style: normal;
         }
 
-        /* ============================================================
-           SEÇÕES
-        ============================================================ */
         section {
             margin: 4rem 0;
             padding: 2rem 0;
@@ -106,9 +100,6 @@
             font-size: 1.2rem;
         }
 
-        /* ============================================================
-           PERFIL
-        ============================================================ */
         .perfil-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -135,10 +126,6 @@
             margin-bottom: 0.5rem;
         }
 
-        .perfil-card p {
-            text-align: justify;
-        }
-
         .perfil-card ul {
             list-style: none;
             padding: 0;
@@ -152,9 +139,11 @@
             border-bottom: none;
         }
 
-        /* ============================================================
-           IMAGEM
-        ============================================================ */
+        .perfil-card .destaque {
+            color: #a78bfa;
+            font-weight: 700;
+        }
+
         .imagem-destaque {
             width: 100%;
             max-height: 400px;
@@ -164,17 +153,11 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
-        .texto-justificado {
+        .texto-justificado p {
+            margin-bottom: 1rem;
             text-align: justify;
         }
 
-        .texto-justificado p {
-            margin-bottom: 1rem;
-        }
-
-        /* ============================================================
-           CITAÇÃO
-        ============================================================ */
         .citacao {
             font-style: italic;
             color: #b8aed0;
@@ -191,9 +174,6 @@
             font-style: normal;
         }
 
-        /* ============================================================
-           BOTÕES
-        ============================================================ */
         .btn-voltar {
             display: inline-block;
             margin-top: 2.5rem;
@@ -273,39 +253,6 @@
         .delay-4 {
             animation-delay: 1s;
         }
-
-        .btn-viagem {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.8rem 2.5rem;
-            background: rgba(167, 139, 250, 0.12);
-            border: 1px solid rgba(167, 139, 250, 0.2);
-            border-radius: 30px;
-            color: #a78bfa;
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            animation: pulsarBotao 2s ease-in-out infinite;
-        }
-
-        .btn-viagem:hover {
-            background: rgba(167, 139, 250, 0.2);
-            border-color: #a78bfa;
-            color: #f0e6d0;
-            transform: scale(1.05);
-        }
-
-        @keyframes pulsarBotao {
-            0%,
-            100% {
-                box-shadow: 0 0 10px rgba(167, 139, 250, 0.1);
-            }
-            50% {
-                box-shadow: 0 0 30px rgba(167, 139, 250, 0.3);
-            }
-        }
     </style>
 </head>
 <body>
@@ -331,11 +278,11 @@
                 <div class="perfil-card">
                     <h3>Físico</h3>
                     <ul>
-                        <li><strong>Cabelos:</strong> Castanhos longos e ondulados</li>
-                        <li><strong>Olhos:</strong> Grandes, puxados e azuis</li>
-                        <li><strong>Rosto:</strong> Fino e nariz pequeno</li>
-                        <li><strong>Pele:</strong> Pálida como a luz da lua</li>
-                        <li><strong>Marca:</strong> Cicatriz negra com pontos luminosos no lado direito do rosto</li>
+                        <li><span class="destaque">Pele:</span> Branca como a lua</li>
+                        <li><span class="destaque">Cabelos:</span> Azul-escuros</li>
+                        <li><span class="destaque">Olhos:</span> Violeta</li>
+                        <li><span class="destaque">Vestimenta:</span> Longo manto negro com detalhes dourados e brilho estrelado</li>
+                        <li><span class="destaque">Marca:</span> Cicatriz negra com pontos luminosos no lado direito do rosto</li>
                     </ul>
                 </div>
                 <div class="perfil-card">
@@ -364,20 +311,20 @@
                 <p>O impacto fez a terra estremecer.</p>
                 <p>Quando a poeira finalmente baixou, não havia pedra alguma na cratera.</p>
                 <p>Havia um bebê.</p>
-                <p>Sua pele era pálida como a luz da lua, seus cabelos possuíam um tom azul profundo e seus olhos brilhavam em uma cor violeta. Sobre o lado direito do rosto, uma marca negra como uma cicatriz marcava seu rosto, marcada por pequenos pontos luminosos que lembravam estrelas.</p>
+                <p>Jovem de aparência fria, possuía uma pele branca como a lua, com cabelos azul-escuros e olhos violeta. Vestia um longo manto negro adornado por detalhes dourados e um brilho que lembrava um céu estrelado. Uma cicatriz negra com pontos luminosos marcava o lado direito de seu rosto.</p>
 
-                <img src="image.png" alt="Sora bebê" class="imagem-destaque" onerror="this.style.display='none'" />
+                <img src="sora.png" alt="Sora" class="imagem-destaque" onerror="this.style.display='none'" />
 
-                <p>Naquela noite, a lua nova estava sob o céu, ela estava em seu ponto mais alto. Não demorou para que um grupo encontrasse o recém-nascido.</p>
+                <p>Naquela noite, a lua nova estava sob o céu, em seu ponto mais alto. Não demorou para que um grupo encontrasse o recém-nascido.</p>
                 <p>Eram membros de um antigo culto dedicado ao Deus da Lua, uma divindade esquecida pelo restante do mundo, mas venerada por seus seguidores como o verdadeiro soberano do firmamento noturno.</p>
-                <p>Para eles, não havia dúvidas, a criança era uma dádiva dos céus.</p>
+                <p>Para eles, não havia dúvidas: a criança era uma dádiva dos céus.</p>
                 <p>Um presente enviado pelo próprio Deus para conduzir seus fiéis.</p>
                 <p>Enquanto toda a atenção era voltada ao recém-chegado, outra criança observava tudo em silêncio.</p>
 
-                <img src="image%20(1).png" alt="Akurashi observando" class="imagem-destaque" onerror="this.style.display='none'" />
+                <img src="akurashi.png" alt="Akurashi observando" class="imagem-destaque" onerror="this.style.display='none'" />
 
                 <p>Seu nome era Akurashi.</p>
-                <p>Assim como o bebê, possuía pele extremamente pálida e cabelos brancos como neve. Muitos o consideravam estranho desde seu nascimento, mas nunca recebeu qualquer tipo de veneração. Para o culto, era apenas mais um órfão acolhido por misericórdia.</p>
+                <p>Assim como o bebê, possuía pele extremamente pálida e cabelos brancos como neve. Muitos o consideravam estranho desde seu nascimento, mas nunca recebera qualquer tipo de veneração. Para o culto, era apenas mais um órfão acolhido por misericórdia.</p>
                 <p>Algumas semanas depois, durante uma cerimônia realizada sob um céu sem estrelas, os anciãos finalmente deram um nome ao menino.</p>
                 <p>Ele raramente chorava. Nunca sorria.</p>
                 <p>Seu olhar era vazio, distante, como se observasse um lugar inalcançável para qualquer ser.</p>
@@ -390,9 +337,9 @@
         <section class="fade-in delay-3">
             <h2>Ato II — Sirius</h2>
             <div class="texto-justificado">
-                <p>Aos quatro anos, Sora já havia percebido que era diferente das outras crianças. Desde que conseguia se lembrar, nunca havia sentido vontade de sorrir ou de chorar. Seu rosto permanecia sempre vazio, seus olhos caídos transmitiam uma frieza incomum para alguém tão pequeno, e nem mesmo ele entendia o motivo disso. No entanto, existia algo que despertava seu interesse acima de qualquer outra coisa, o conhecimento. Antes mesmo de completar três anos, já havia aprendido a ler praticamente sozinho. Passava horas folheando os livros antigos guardados pelo culto, muitos escritos em uma linguagem difícil até para os adultos. Nem sempre compreendia o significado das palavras, mas fazia questão de decorá-las. Quanto mais lia, mais perguntas surgiam. O que eram as estrelas? Por que existia uma lua? O que significava ser um deus? Por que todos se ajoelhavam diante dele? Nenhuma resposta parecia suficiente.</p>
+                <p>Aos quatro anos, Sora já havia percebido que era diferente das outras crianças. Desde que conseguia se lembrar, nunca havia sentido vontade de sorrir ou de chorar. Seu rosto permanecia sempre vazio, seus olhos caídos transmitiam uma frieza incomum para alguém tão pequeno, e nem mesmo ele entendia o motivo disso. No entanto, existia algo que despertava seu interesse acima de qualquer outra coisa: o conhecimento. Antes mesmo de completar três anos, já havia aprendido a ler praticamente sozinho. Passava horas folheando os livros antigos guardados pelo culto, muitos escritos em uma linguagem difícil até para os adultos. Nem sempre compreendia o significado das palavras, mas fazia questão de decorá-las. Quanto mais lia, mais perguntas surgiam. O que eram as estrelas? Por que existia uma lua? O que significava ser um deus? Por que todos se ajoelhavam diante dele? Nenhuma resposta parecia suficiente.</p>
 
-                <img src="image%20(2).png" alt="Sora lendo" class="imagem-destaque" onerror="this.style.display='none'" />
+                <img src="sora_lendo.png" alt="Sora lendo" class="imagem-destaque" onerror="this.style.display='none'" />
 
                 <p>Entre todas as pessoas daquele lugar, havia apenas uma cuja presença fazia Sora sentir algo diferente. Não era felicidade, nem carinho, tampouco amor. Era apenas... conforto. Akurashi sempre estava ao seu lado. Desde que conseguia lembrar, era ele quem o acompanhava para todos os lugares, permanecia próximo enquanto lia e nunca reclamava quando Sora simplesmente sentava ao seu lado em silêncio. O garoto nunca conseguiu explicar por que gostava de sua companhia, mas sempre que Akurashi estava por perto, o ambiente parecia menos estranho.</p>
 
@@ -409,7 +356,7 @@
 
                 <p>As tochas foram erguidas e os cânticos começaram. Era uma língua completamente diferente de qualquer outra que Sora já havia encontrado nos livros do culto. Mesmo sem compreendê-la, prestou atenção em cada sílaba, tentando memorizar seus sons. Enquanto isso, um cheiro estranho começou a preencher o ar. Não era apenas fumaça. Havia algo diferente e pesado. Seus olhos acompanharam duas pessoas carregando um enorme objeto de madeira. Era comprido demais para ser um simples baú. Parecia um armário... ou talvez um caixão. Antes que pudesse pensar mais sobre aquilo, o objeto foi lançado diretamente na fogueira.</p>
 
-                <img src="image%20(3).png" alt="Ritual" class="imagem-destaque" onerror="this.style.display='none'" />
+                <img src="ritual.png" alt="Ritual" class="imagem-destaque" onerror="this.style.display='none'" />
 
                 <p>As chamas cresceram rapidamente.</p>
                 <p>Todos ao redor começaram a celebrar.</p>
@@ -450,7 +397,7 @@
                 <p>Toda peça possuía uma função.</p>
                 <p>E Akurashi havia nascido para cumprir a sua.</p>
 
-                <img src="image%20(4).png" alt="Sora e Akurashi" class="imagem-destaque" onerror="this.style.display='none'" />
+                <img src="sora_akurashi.png" alt="Sora e Akurashi" class="imagem-destaque" onerror="this.style.display='none'" />
 
                 <p>Apesar de exercer cada vez mais influência sobre o culto, seu verdadeiro interesse nunca esteve no poder.</p>
                 <p>Era o conhecimento.</p>
@@ -519,7 +466,7 @@
                 <p>Importava quem possuía mais.</p>
                 <p>Percebeu comerciantes enganando clientes, nobres comprando soldados para esconder crimes, religiosos vendendo falsas esperanças em troca de moedas e crianças sendo abandonadas nas ruas enquanto adultos fingiam não enxergá-las.</p>
 
-                <img src="image%20(5).png" alt="Sora na cidade" class="imagem-destaque" onerror="this.style.display='none'" />
+                <img src="sora_cidade.png" alt="Sora na cidade" class="imagem-destaque" onerror="this.style.display='none'" />
 
                 <p>Aquilo era diferente do culto.</p>
                 <p>Mas, ao mesmo tempo...</p>
@@ -548,7 +495,7 @@
                 <p style="text-align: center; font-size: 1.2rem; color: #a78bfa; margin: 1rem 0;"><strong>E, se era falha...</strong></p>
                 <p style="text-align: center; font-size: 1.5rem; color: #a78bfa; margin: 1rem 0;"><strong>Podia ser destruída.</strong></p>
 
-                <img src="image%20(6).png" alt="Sora sorrindo" class="imagem-destaque" onerror="this.style.display='none'" />
+                <img src="sora_sorriso.png" alt="Sora sorrindo" class="imagem-destaque" onerror="this.style.display='none'" />
 
                 <p>Naquela noite, fez uma promessa apenas para si.</p>
                 <p style="text-align: center; font-size: 1.1rem; color: #a78bfa; margin: 1rem 0; font-style: italic;">"Um dia farei este mundo compreender o próprio erro."</p>
@@ -587,9 +534,6 @@
     </div>
 
     <script>
-        // ============================================================
-        // ESTRELAS CADENTES
-        // ============================================================
         const canvas = document.getElementById('stars-canvas');
         const ctx = canvas.getContext('2d');
         let W, H;
@@ -681,9 +625,6 @@
         }
         drawStars();
 
-        // ============================================================
-        // MÚSICA DE FUNDO
-        // ============================================================
         const musicBtn = document.getElementById('musicBtn');
         let audioFundo = null;
         let isPlayingFundo = false;
@@ -723,6 +664,5 @@
 
         console.log('⭐ Sora Kuuhaku — página carregada.');
     </script>
-
 </body>
 </html>
