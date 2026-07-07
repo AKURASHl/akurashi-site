@@ -421,11 +421,11 @@
                 <div class="sobre-detalhes">
                     <ul>
                         <li><span class="detalhe-label">Nascimento</span> 21/01/???</li>
-                        <li><span class="detalhe-label">Fobia:</span> Hafefobia (medo de contato físico)</li>
-                        <li><span class="detalhe-label">Gosta:</span> Lua, livros, noite</li>
-                        <li><span class="detalhe-label">Odeia:</span> Vegetais</li>
-                        <li><span class="detalhe-label">Personalidade:</span> Frio, calmo, arrogante e vingativo</li>
-                        <li><span class="detalhe-label">Aparência:</span> Cabelos brancos, pele pálida, olhos frios, venda no rosto</li>
+                        <li><span class="detalhe-label">Fobia</span> Hafefobia (medo de contato físico)</li>
+                        <li><span class="detalhe-label">Gosta</span> Lua, livros, noite</li>
+                        <li><span class="detalhe-label">Odeia</span> Vegetais</li>
+                        <li><span class="detalhe-label">Personalidade</span> Frio, insensível, calmo, arrogante e vingativo</li>
+                        <li><span class="detalhe-label">Aparência</span> Cabelos brancos, pele pálida, olhos frios, venda no rosto</li>
                     </ul>
                 </div>
             </div>
@@ -837,7 +837,7 @@
         });
 
         // ============================================================
-        // BOTÃO VIAGEM — EFEITO DE HIPERESPAÇO COM IMAGEM
+        // BOTÃO VIAGEM — EFEITO DE HIPERESPAÇO COM IMAGEM (CORRIGIDO)
         // ============================================================
         const btnViagem = document.getElementById('btnViagem');
 
@@ -874,10 +874,10 @@
                 overlay.appendChild(tunnelStars);
 
                 // ============================================================
-                // IMAGEM REGULUS (em vez de texto)
+                // IMAGEM REGULUS
                 // ============================================================
                 const regulusImg = document.createElement('img');
-                regulusImg.src = 'regulus.png'; // <-- NOME DA IMAGEM
+                regulusImg.src = 'regulus.png';
                 regulusImg.alt = 'Regulus';
                 regulusImg.style.cssText = `
                     position: absolute;
@@ -968,10 +968,8 @@
                     if (frame < totalFrames) {
                         requestAnimationFrame(drawTunnel);
                     } else {
-                        overlay.style.opacity = '0';
-                        setTimeout(() => {
-                            window.location.href = 'sora.html';
-                        }, 600);
+                        // Mantém a tela preta e redireciona sem delay
+                        window.location.href = 'sora.html';
                     }
                 }
 
@@ -1052,6 +1050,7 @@
         console.log('✨ Easter egg: a cada 10 cliques, estrelas cadentes especiais aparecem!');
         console.log('🚀 Botão "Viajar pelas estrelas" leva para Sora Kuuhaku.');
         console.log('🖼️ Imagem Regulus: regulus.png');
+        console.log('✨ Transição corrigida — sem piscar no final.');
     </script>
 </body>
 </html>
