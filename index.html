@@ -46,12 +46,12 @@
 
         .titulo-principal {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            font-size: clamp(1.8rem, 4vw, 3.2rem);
             color: #f0e6d0;
             text-shadow: 0 0 80px rgba(180, 150, 200, 0.4), 0 0 150px rgba(180, 150, 200, 0.1);
-            letter-spacing: 0.35em;
+            letter-spacing: 0.3em;
             text-align: center;
-            padding: 2.5rem 1rem 1.5rem;
+            padding: 2rem 1rem 1.2rem;
             opacity: 0;
             animation: fadeIn 2s ease forwards;
             flex-shrink: 0;
@@ -95,7 +95,7 @@
             cursor: pointer;
             transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
-            padding: 2rem;
+            padding: 1.5rem;
             background: transparent;
             border: none;
             opacity: 0;
@@ -125,10 +125,13 @@
         }
 
         .lado-aquario {
-            animation-delay: 0.5s;
+            animation-delay: 0.4s;
+        }
+        .lado-cancer {
+            animation-delay: 0.7s;
         }
         .lado-leao {
-            animation-delay: 0.9s;
+            animation-delay: 1.0s;
         }
 
         @keyframes fadeInLado {
@@ -144,7 +147,7 @@
 
         .divisoria {
             width: 1px;
-            height: 50%;
+            height: 45%;
             background: linear-gradient(to bottom, transparent, rgba(180, 150, 200, 0.15), transparent);
             flex-shrink: 0;
             z-index: 2;
@@ -159,18 +162,18 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 1rem;
+            padding: 0.5rem;
         }
 
         .simbolo-wrapper {
             position: relative;
-            width: 140px;
-            height: 140px;
+            width: 120px;
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-            font-size: 5rem;
+            font-size: 4.5rem;
             font-family: 'Cinzel', serif;
         }
 
@@ -249,8 +252,8 @@
 
         .lado-nome {
             font-family: 'Cinzel', serif;
-            font-size: clamp(1.6rem, 3vw, 2.5rem);
-            margin-top: 1.2rem;
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            margin-top: 0.8rem;
             letter-spacing: 0.2em;
             transition: all 0.4s ease;
             font-weight: 400;
@@ -260,34 +263,22 @@
             letter-spacing: 0.3em;
         }
 
-        .lado-status {
-            font-size: clamp(0.6rem, 0.9vw, 0.8rem);
-            color: #6a5f7a;
-            letter-spacing: 0.12em;
-            margin-top: 0.5rem;
-            opacity: 0.5;
-            transition: opacity 0.4s ease;
-            font-weight: 300;
-            text-transform: uppercase;
-        }
-
-        .lado:hover .lado-status {
-            opacity: 0.9;
-        }
-
         .linha-decorativa {
-            width: 40px;
+            width: 30px;
             height: 1px;
-            margin-top: 0.6rem;
+            margin-top: 0.4rem;
             transition: all 0.6s ease;
             opacity: 0.3;
         }
 
         .lado:hover .linha-decorativa {
-            width: 70px;
+            width: 50px;
             opacity: 0.8;
         }
 
+        /* ============================================================
+           CORES
+        ============================================================ */
         .lado-aquario .simbolo-svg {
             color: #7a9cff;
         }
@@ -317,6 +308,37 @@
         .lado-aquario .particula {
             background: #7a9cff;
             box-shadow: 0 0 10px rgba(122, 156, 255, 0.3);
+        }
+
+        .lado-cancer .simbolo-svg {
+            color: #66cc99;
+        }
+        .lado-cancer .simbolo-svg .traco {
+            stroke: #66cc99;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .lado-cancer .simbolo-svg .preenchimento {
+            fill: #66cc99;
+            opacity: 0.3;
+        }
+        .lado-cancer .lado-nome {
+            color: #66cc99;
+        }
+        .lado-cancer .linha-decorativa {
+            background: linear-gradient(to right, transparent, #66cc99, transparent);
+        }
+        .lado-cancer::before {
+            background: radial-gradient(ellipse at center, rgba(102, 204, 153, 0.05), transparent 70%);
+        }
+        .lado-cancer:hover::before {
+            background: radial-gradient(ellipse at center, rgba(102, 204, 153, 0.12), transparent 70%);
+        }
+        .lado-cancer .particula {
+            background: #66cc99;
+            box-shadow: 0 0 10px rgba(102, 204, 153, 0.3);
         }
 
         .lado-leao .simbolo-svg {
@@ -350,6 +372,9 @@
             box-shadow: 0 0 10px rgba(255, 170, 68, 0.3);
         }
 
+        /* ============================================================
+           RESPONSIVIDADE
+        ============================================================ */
         @media (max-width: 768px) {
             .constelacoes-wrapper {
                 flex-direction: row;
@@ -357,19 +382,19 @@
 
             .divisoria {
                 width: 1px;
-                height: 50%;
+                height: 40%;
                 margin: auto 0;
             }
 
             .lado {
-                padding: 1rem;
+                padding: 0.8rem;
                 flex: 1;
             }
 
             .simbolo-wrapper {
-                width: 100px;
-                height: 100px;
-                font-size: 3.5rem;
+                width: 80px;
+                height: 80px;
+                font-size: 3rem;
             }
 
             .simbolo-wrapper .orbita-1 {
@@ -382,63 +407,59 @@
             }
 
             .titulo-principal {
-                padding: 1.2rem 1rem 0.5rem;
-                font-size: clamp(1.4rem, 4vw, 2rem);
+                padding: 1rem 1rem 0.5rem;
+                font-size: clamp(1.2rem, 3.5vw, 1.8rem);
             }
 
             .lado-nome {
-                font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-                margin-top: 0.6rem;
-            }
-
-            .lado-status {
-                font-size: 0.55rem;
-                margin-top: 0.3rem;
-            }
-
-            .linha-decorativa {
-                width: 30px;
+                font-size: clamp(0.9rem, 2vw, 1.2rem);
                 margin-top: 0.4rem;
             }
 
+            .linha-decorativa {
+                width: 20px;
+                margin-top: 0.3rem;
+            }
+
             .lado:hover .linha-decorativa {
-                width: 50px;
+                width: 35px;
             }
         }
 
         @media (max-width: 480px) {
             .simbolo-wrapper {
-                width: 70px;
-                height: 70px;
-                font-size: 2.5rem;
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
             }
             .lado {
-                padding: 0.5rem;
+                padding: 0.3rem;
             }
             .lado-nome {
-                font-size: 0.9rem;
-                margin-top: 0.4rem;
-            }
-            .lado-status {
-                font-size: 0.45rem;
+                font-size: 0.7rem;
+                margin-top: 0.3rem;
             }
             .titulo-principal {
-                font-size: 1.1rem;
-                padding: 0.8rem 0.5rem 0.3rem;
+                font-size: 0.9rem;
+                padding: 0.5rem 0.3rem 0.2rem;
+                letter-spacing: 0.15em;
+            }
+            .titulo-principal::after {
+                width: 60px;
             }
             .divisoria {
-                height: 35%;
+                height: 30%;
             }
             .simbolo-wrapper .orbita-1,
             .simbolo-wrapper .orbita-2 {
                 display: none;
             }
             .linha-decorativa {
-                width: 20px;
-                margin-top: 0.3rem;
+                width: 15px;
+                margin-top: 0.2rem;
             }
             .lado:hover .linha-decorativa {
-                width: 35px;
+                width: 25px;
             }
         }
 
@@ -511,7 +532,43 @@
                     </div>
                     <span class="lado-nome">Aquário</span>
                     <span class="linha-decorativa"></span>
-                    <span class="lado-status">✦ Disponível ✦</span>
+                </div>
+            </div>
+
+            <!-- ===================== DIVISÓRIA ===================== -->
+            <div class="divisoria"></div>
+
+            <!-- ===================== CÂNCER ===================== -->
+            <div class="lado lado-cancer" data-destino="cancer.html" data-estrela="Câncer">
+                <div class="lado-conteudo">
+                    <div class="simbolo-wrapper">
+                        <span class="particula" style="top:8%;left:8%;width:2px;height:2px;"></span>
+                        <span class="particula" style="top:20%;right:10%;width:3px;height:3px;"></span>
+                        <span class="particula" style="bottom:15%;left:12%;width:2px;height:2px;"></span>
+                        <span class="particula" style="bottom:10%;right:8%;width:3px;height:3px;"></span>
+                        <span class="particula" style="top:50%;left:-8%;width:2px;height:2px;"></span>
+                        <span class="particula" style="top:40%;right:-10%;width:3px;height:3px;"></span>
+
+                        <span class="orbita orbita-1"></span>
+                        <span class="orbita orbita-2"></span>
+
+                        <svg class="simbolo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="traco" d="M30 40 C20 25, 40 15, 50 25 C60 15, 80 25, 70 40" />
+                            <path class="traco" d="M35 45 L30 60" />
+                            <path class="traco" d="M65 45 L70 60" />
+                            <path class="traco" d="M30 40 C22 35, 18 28, 25 22" />
+                            <path class="traco" d="M70 40 C78 35, 82 28, 75 22" />
+                            <circle class="preenchimento" cx="42" cy="30" r="2.5" />
+                            <circle class="preenchimento" cx="58" cy="30" r="2.5" />
+                            <path class="traco" d="M35 45 C40 55, 60 55, 65 45" />
+                            <path class="traco" d="M38 48 C35 58, 28 62, 25 70" />
+                            <path class="traco" d="M45 50 C42 60, 40 68, 42 75" />
+                            <path class="traco" d="M55 50 C58 60, 60 68, 58 75" />
+                            <path class="traco" d="M62 48 C65 58, 72 62, 75 70" />
+                        </svg>
+                    </div>
+                    <span class="lado-nome">Câncer</span>
+                    <span class="linha-decorativa"></span>
                 </div>
             </div>
 
@@ -548,7 +605,6 @@
                     </div>
                     <span class="lado-nome">Leão</span>
                     <span class="linha-decorativa"></span>
-                    <span class="lado-status">◈ Em breve ◈</span>
                 </div>
             </div>
 
@@ -703,6 +759,13 @@
                 const destino = this.dataset.destino;
                 const nomeEstrela = this.dataset.estrela;
 
+                // Define a cor com base na constelação
+                let corDestaque;
+                if (nomeEstrela === 'Aquário') corDestaque = '#7a9cff';
+                else if (nomeEstrela === 'Câncer') corDestaque = '#66cc99';
+                else if (nomeEstrela === 'Leão') corDestaque = '#ffaa44';
+                else corDestaque = '#ffffff';
+
                 // Cria overlay
                 const overlay = document.createElement('div');
                 overlay.style.cssText = `
@@ -737,10 +800,10 @@
                 const starName = document.createElement('div');
                 starName.style.cssText = `
                     position: absolute;
-                    color: ${nomeEstrela === 'Aquário' ? '#7a9cff' : '#ffaa44'};
+                    color: ${corDestaque};
                     font-family: 'Cinzel', serif;
                     font-size: 3rem;
-                    text-shadow: 0 0 60px ${nomeEstrela === 'Aquário' ? 'rgba(122, 156, 255, 0.5)' : 'rgba(255, 170, 68, 0.5)'};
+                    text-shadow: 0 0 60px ${corDestaque}40;
                     opacity: 0;
                     transition: opacity 1s ease;
                     z-index: 10;
@@ -766,7 +829,6 @@
 
                 // Cria as estrelas do túnel
                 const starTunnel = [];
-                const corDestaque = nomeEstrela === 'Aquário' ? '#7a9cff' : '#ffaa44';
                 for (let i = 0; i < 300; i++) {
                     starTunnel.push({
                         x: (Math.random() - 0.5) * tW * 2,
@@ -838,6 +900,7 @@
 
         console.log('🌌 Constelações — página inicial carregada.');
         console.log('🚀 Clique em qualquer constelação para uma viagem interestelar!');
+        console.log('♋ Câncer adicionado!');
     </script>
 
 </body>
