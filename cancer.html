@@ -970,7 +970,7 @@
         }, { once: true });
 
         // ============================================================
-        // MÚSICA DO CÂNCER (MARÉ) — TOQUE AUTOMÁTICO
+        // MÚSICA DO CÂNCER (MARÉ) — CORRIGIDA
         // ============================================================
         const btnCancerMusic = document.getElementById('btnCancerMusic');
         let audioCancer = null;
@@ -992,21 +992,29 @@
                 });
 
                 audioCancer.addEventListener('error', function(e) {
-                    console.error('Erro ao carregar música:', e);
+                    console.error('Erro ao carregar música do Câncer:', e);
                     btnCancerMusic.textContent = '🎵 Ouvir música de Maré';
                     btnCancerMusic.classList.remove('playing');
                     isPlayingCancer = false;
+                    if (audioFundo && !isPlayingFundo) {
+                        audioFundo.play().catch(() => {});
+                        isPlayingFundo = true;
+                        musicBtn.textContent = '🔊';
+                    }
                 });
 
                 audioInicializado = true;
                 console.log('🎵 Player de música do Câncer carregado.');
 
+                // PAUSA A MÚSICA DE FUNDO
                 if (audioFundo && isPlayingFundo) {
                     audioFundo.pause();
                     isPlayingFundo = false;
                     musicBtn.textContent = '🔇';
+                    console.log('🔇 Música de fundo pausada.');
                 }
 
+                // TOCA A MÚSICA DO CÂNCER
                 audioCancer.play()
                     .then(() => {
                         isPlayingCancer = true;
@@ -1015,18 +1023,23 @@
                         console.log('🎵 Música de Maré tocando automaticamente.');
                     })
                     .catch((err) => {
-                        console.error('Erro ao tocar automaticamente:', err);
+                        console.error('Erro ao tocar música do Câncer:', err);
                         btnCancerMusic.textContent = '🎵 Ouvir música de Maré';
+                        if (audioFundo && !isPlayingFundo) {
+                            audioFundo.play().catch(() => {});
+                            isPlayingFundo = true;
+                            musicBtn.textContent = '🔊';
+                        }
                     });
 
             } catch (e) {
-                console.error('Erro ao criar player:', e);
+                console.error('Erro ao criar player do Câncer:', e);
             }
         }
 
         // Tenta iniciar automaticamente quando a página carrega
         document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(iniciarMusicaCancer, 500);
+            setTimeout(iniciarMusicaCancer, 600);
         });
 
         // Fallback: se o navegador bloquear, tenta no primeiro clique
@@ -1037,7 +1050,7 @@
             document.removeEventListener('click', iniciarPorClique);
         }, { once: true });
 
-        // Controle do botão (para o usuário ligar/desligar manualmente)
+        // Controle do botão
         if (btnCancerMusic) {
             btnCancerMusic.addEventListener('click', function() {
                 if (!audioInicializado) {
@@ -1055,6 +1068,7 @@
                         audioFundo.play().catch(() => {});
                         isPlayingFundo = true;
                         musicBtn.textContent = '🔊';
+                        console.log('🔊 Música de fundo retomada.');
                     }
                     return;
                 }
@@ -1063,6 +1077,7 @@
                     audioFundo.pause();
                     isPlayingFundo = false;
                     musicBtn.textContent = '🔇';
+                    console.log('🔇 Música de fundo pausada.');
                 }
 
                 audioCancer.play()
@@ -1070,10 +1085,16 @@
                         isPlayingCancer = true;
                         btnCancerMusic.textContent = '⏹️ Parar música';
                         btnCancerMusic.classList.add('playing');
+                        console.log('🎵 Música de Maré tocando.');
                     })
                     .catch((err) => {
                         console.error('Erro ao tocar:', err);
                         alert('Clique na página primeiro e tente novamente.');
+                        if (audioFundo && !isPlayingFundo) {
+                            audioFundo.play().catch(() => {});
+                            isPlayingFundo = true;
+                            musicBtn.textContent = '🔊';
+                        }
                     });
             });
         }
