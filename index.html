@@ -46,12 +46,12 @@
 
         .titulo-principal {
             font-family: 'Cinzel', serif;
-            font-size: clamp(1.8rem, 4vw, 3.2rem);
+            font-size: clamp(1.5rem, 3.5vw, 2.8rem);
             color: #f0e6d0;
             text-shadow: 0 0 80px rgba(180, 150, 200, 0.4), 0 0 150px rgba(180, 150, 200, 0.1);
             letter-spacing: 0.3em;
             text-align: center;
-            padding: 2rem 1rem 1.2rem;
+            padding: 1.5rem 1rem 1rem;
             opacity: 0;
             animation: fadeIn 2s ease forwards;
             flex-shrink: 0;
@@ -64,7 +64,7 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 120px;
+            width: 80px;
             height: 1px;
             background: linear-gradient(to right, transparent, rgba(180, 150, 200, 0.4), transparent);
         }
@@ -75,6 +75,9 @@
             }
         }
 
+        /* ============================================================
+           CONSTELAÇÕES — LAYOUT RESPONSIVO
+        ============================================================ */
         .constelacoes-wrapper {
             display: flex;
             flex: 1;
@@ -82,10 +85,16 @@
             min-height: 0;
             flex-direction: row;
             align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0.5rem;
+            gap: 0;
         }
 
         .lado {
-            flex: 1;
+            flex: 1 1 23%;
+            min-width: 120px;
+            max-width: 25%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -95,7 +104,7 @@
             cursor: pointer;
             transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
-            padding: 1rem;
+            padding: 0.8rem 0.3rem;
             background: transparent;
             border: none;
             opacity: 0;
@@ -121,20 +130,20 @@
         }
 
         .lado:hover {
-            transform: scale(1.03);
+            transform: scale(1.05);
         }
 
         .lado-aquario {
-            animation-delay: 0.3s;
+            animation-delay: 0.2s;
         }
         .lado-cancer {
-            animation-delay: 0.5s;
+            animation-delay: 0.4s;
         }
         .lado-leao {
-            animation-delay: 0.7s;
+            animation-delay: 0.6s;
         }
         .lado-capricornio {
-            animation-delay: 0.9s;
+            animation-delay: 0.8s;
         }
 
         @keyframes fadeInLado {
@@ -150,7 +159,7 @@
 
         .divisoria {
             width: 1px;
-            height: 40%;
+            height: 50%;
             background: linear-gradient(to bottom, transparent, rgba(180, 150, 200, 0.15), transparent);
             flex-shrink: 0;
             z-index: 2;
@@ -165,18 +174,18 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0.5rem;
+            padding: 0.3rem;
         }
 
         .simbolo-wrapper {
             position: relative;
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-family: 'Cinzel', serif;
         }
 
@@ -255,34 +264,33 @@
 
         .lado-nome {
             font-family: 'Cinzel', serif;
-            font-size: clamp(1rem, 2vw, 1.6rem);
-            margin-top: 0.6rem;
-            letter-spacing: 0.2em;
+            font-size: clamp(0.8rem, 1.5vw, 1.3rem);
+            margin-top: 0.5rem;
+            letter-spacing: 0.15em;
             transition: all 0.4s ease;
             font-weight: 400;
         }
 
         .lado:hover .lado-nome {
-            letter-spacing: 0.3em;
+            letter-spacing: 0.25em;
         }
 
         .linha-decorativa {
-            width: 25px;
+            width: 20px;
             height: 1px;
-            margin-top: 0.3rem;
+            margin-top: 0.2rem;
             transition: all 0.6s ease;
             opacity: 0.3;
         }
 
         .lado:hover .linha-decorativa {
-            width: 40px;
+            width: 35px;
             opacity: 0.8;
         }
 
         /* ============================================================
            CORES
         ============================================================ */
-        /* Aquário (Azul) */
         .lado-aquario .simbolo-svg {
             color: #7a9cff;
         }
@@ -314,7 +322,6 @@
             box-shadow: 0 0 10px rgba(122, 156, 255, 0.3);
         }
 
-        /* Câncer (Verde Esmeralda) */
         .lado-cancer .simbolo-svg {
             color: #66cc99;
         }
@@ -346,7 +353,6 @@
             box-shadow: 0 0 10px rgba(102, 204, 153, 0.3);
         }
 
-        /* Leão (Dourado) */
         .lado-leao .simbolo-svg {
             color: #ffaa44;
         }
@@ -378,7 +384,6 @@
             box-shadow: 0 0 10px rgba(255, 170, 68, 0.3);
         }
 
-        /* Capricórnio (Marrom/Dourado Escuro) */
         .lado-capricornio .simbolo-svg {
             color: #d4a373;
         }
@@ -411,30 +416,32 @@
         }
 
         /* ============================================================
-           RESPONSIVIDADE
+           RESPONSIVIDADE — TODAS AS CONSTELAÇÕES VISÍVEIS
         ============================================================ */
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
             .constelacoes-wrapper {
-                flex-direction: row;
                 flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                gap: 0;
             }
 
             .lado {
                 flex: 1 1 45%;
-                padding: 0.8rem;
-                min-height: 40vh;
+                max-width: 48%;
+                min-width: 100px;
+                padding: 0.5rem 0.2rem;
+                min-height: 30vh;
             }
 
             .divisoria {
-                width: 1px;
-                height: 40%;
-                margin: auto 0;
+                display: none;
             }
 
             .simbolo-wrapper {
                 width: 70px;
                 height: 70px;
-                font-size: 3rem;
+                font-size: 2.8rem;
             }
 
             .simbolo-wrapper .orbita-1 {
@@ -452,35 +459,36 @@
             }
 
             .lado-nome {
-                font-size: clamp(0.9rem, 2vw, 1.2rem);
-                margin-top: 0.4rem;
+                font-size: clamp(0.8rem, 2vw, 1rem);
+                margin-top: 0.3rem;
             }
 
             .linha-decorativa {
-                width: 20px;
-                margin-top: 0.3rem;
+                width: 15px;
+                margin-top: 0.2rem;
             }
 
             .lado:hover .linha-decorativa {
-                width: 35px;
+                width: 25px;
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 480px) {
             .lado {
                 flex: 1 1 100%;
-                padding: 0.5rem;
-                min-height: 25vh;
+                max-width: 100%;
+                padding: 0.3rem;
+                min-height: 20vh;
             }
 
             .simbolo-wrapper {
-                width: 60px;
-                height: 60px;
-                font-size: 2.5rem;
+                width: 55px;
+                height: 55px;
+                font-size: 2rem;
             }
             .lado-nome {
-                font-size: 0.8rem;
-                margin-top: 0.3rem;
+                font-size: 0.7rem;
+                margin-top: 0.2rem;
             }
             .titulo-principal {
                 font-size: 0.9rem;
@@ -488,36 +496,18 @@
                 letter-spacing: 0.15em;
             }
             .titulo-principal::after {
-                width: 60px;
-            }
-            .divisoria {
-                height: 30%;
+                width: 50px;
             }
             .simbolo-wrapper .orbita-1,
             .simbolo-wrapper .orbita-2 {
                 display: none;
             }
             .linha-decorativa {
-                width: 15px;
-                margin-top: 0.2rem;
+                width: 12px;
+                margin-top: 0.1rem;
             }
             .lado:hover .linha-decorativa {
-                width: 25px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .simbolo-wrapper {
-                width: 45px;
-                height: 45px;
-                font-size: 1.8rem;
-            }
-            .lado-nome {
-                font-size: 0.6rem;
-            }
-            .lado {
-                padding: 0.3rem;
-                min-height: 20vh;
+                width: 20px;
             }
         }
 
@@ -593,9 +583,6 @@
                 </div>
             </div>
 
-            <!-- ===================== DIVISÓRIA ===================== -->
-            <div class="divisoria"></div>
-
             <!-- ===================== CÂNCER ===================== -->
             <div class="lado lado-cancer" data-destino="cancer.html" data-estrela="Câncer">
                 <div class="lado-conteudo">
@@ -630,9 +617,6 @@
                 </div>
             </div>
 
-            <!-- ===================== DIVISÓRIA ===================== -->
-            <div class="divisoria"></div>
-
             <!-- ===================== LEÃO ===================== -->
             <div class="lado lado-leao" data-destino="leao.html" data-estrela="Leão">
                 <div class="lado-conteudo">
@@ -666,9 +650,6 @@
                 </div>
             </div>
 
-            <!-- ===================== DIVISÓRIA ===================== -->
-            <div class="divisoria"></div>
-
             <!-- ===================== CAPRICÓRNIO ===================== -->
             <div class="lado lado-capricornio" data-destino="capricornio.html" data-estrela="Capricórnio">
                 <div class="lado-conteudo">
@@ -684,26 +665,16 @@
                         <span class="orbita orbita-2"></span>
 
                         <svg class="simbolo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Símbolo de Capricórnio: corpo de cabra com cauda de peixe -->
-                            <!-- Corpo -->
                             <path class="traco" d="M30 70 C30 50, 45 40, 55 40 C65 40, 75 50, 75 70" />
-                            <!-- Cabeça -->
                             <path class="traco" d="M30 70 C25 60, 20 55, 25 48 C30 42, 40 45, 38 55" />
-                            <!-- Chifre 1 -->
                             <path class="traco" d="M25 48 C20 38, 15 42, 18 35" />
-                            <!-- Chifre 2 -->
                             <path class="traco" d="M28 45 C25 35, 22 38, 24 30" />
-                            <!-- Olho -->
                             <circle class="preenchimento" cx="30" cy="52" r="2" />
-                            <!-- Cauda de peixe -->
                             <path class="traco" d="M75 70 C85 70, 90 60, 85 50 C80 42, 75 48, 78 55" />
-                            <!-- Barbatana -->
                             <path class="traco" d="M80 55 C85 50, 88 55, 82 60" />
-                            <!-- Pernas -->
                             <path class="traco" d="M45 70 L42 82" />
                             <path class="traco" d="M55 70 L52 82" />
                             <path class="traco" d="M65 70 L62 82" />
-                            <!-- Cascos -->
                             <circle class="preenchimento" cx="42" cy="82" r="2.5" />
                             <circle class="preenchimento" cx="52" cy="82" r="2.5" />
                             <circle class="preenchimento" cx="62" cy="82" r="2.5" />
@@ -854,7 +825,7 @@
         }, { once: true });
 
         // ============================================================
-        // ANIMAÇÃO DE VIAGEM PARA AS CONSTELAÇÕES (CORRIGIDA)
+        // ANIMAÇÃO DE VIAGEM
         // ============================================================
         const botoesViagem = document.querySelectorAll('.lado');
 
@@ -1002,4 +973,4 @@
 
 </body>
 </html>
-
+.
