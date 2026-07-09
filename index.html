@@ -95,7 +95,7 @@
             cursor: pointer;
             transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
-            padding: 1.5rem;
+            padding: 1rem;
             background: transparent;
             border: none;
             opacity: 0;
@@ -121,17 +121,20 @@
         }
 
         .lado:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
         }
 
         .lado-aquario {
-            animation-delay: 0.4s;
+            animation-delay: 0.3s;
         }
         .lado-cancer {
-            animation-delay: 0.7s;
+            animation-delay: 0.5s;
         }
         .lado-leao {
-            animation-delay: 1.0s;
+            animation-delay: 0.7s;
+        }
+        .lado-capricornio {
+            animation-delay: 0.9s;
         }
 
         @keyframes fadeInLado {
@@ -147,7 +150,7 @@
 
         .divisoria {
             width: 1px;
-            height: 45%;
+            height: 40%;
             background: linear-gradient(to bottom, transparent, rgba(180, 150, 200, 0.15), transparent);
             flex-shrink: 0;
             z-index: 2;
@@ -167,13 +170,13 @@
 
         .simbolo-wrapper {
             position: relative;
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-            font-size: 4.5rem;
+            font-size: 4rem;
             font-family: 'Cinzel', serif;
         }
 
@@ -252,8 +255,8 @@
 
         .lado-nome {
             font-family: 'Cinzel', serif;
-            font-size: clamp(1.2rem, 2.5vw, 2rem);
-            margin-top: 0.8rem;
+            font-size: clamp(1rem, 2vw, 1.6rem);
+            margin-top: 0.6rem;
             letter-spacing: 0.2em;
             transition: all 0.4s ease;
             font-weight: 400;
@@ -264,21 +267,22 @@
         }
 
         .linha-decorativa {
-            width: 30px;
+            width: 25px;
             height: 1px;
-            margin-top: 0.4rem;
+            margin-top: 0.3rem;
             transition: all 0.6s ease;
             opacity: 0.3;
         }
 
         .lado:hover .linha-decorativa {
-            width: 50px;
+            width: 40px;
             opacity: 0.8;
         }
 
         /* ============================================================
            CORES
         ============================================================ */
+        /* Aquário (Azul) */
         .lado-aquario .simbolo-svg {
             color: #7a9cff;
         }
@@ -310,6 +314,7 @@
             box-shadow: 0 0 10px rgba(122, 156, 255, 0.3);
         }
 
+        /* Câncer (Verde Esmeralda) */
         .lado-cancer .simbolo-svg {
             color: #66cc99;
         }
@@ -341,6 +346,7 @@
             box-shadow: 0 0 10px rgba(102, 204, 153, 0.3);
         }
 
+        /* Leão (Dourado) */
         .lado-leao .simbolo-svg {
             color: #ffaa44;
         }
@@ -372,12 +378,51 @@
             box-shadow: 0 0 10px rgba(255, 170, 68, 0.3);
         }
 
+        /* Capricórnio (Marrom/Dourado Escuro) */
+        .lado-capricornio .simbolo-svg {
+            color: #d4a373;
+        }
+        .lado-capricornio .simbolo-svg .traco {
+            stroke: #d4a373;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .lado-capricornio .simbolo-svg .preenchimento {
+            fill: #d4a373;
+            opacity: 0.3;
+        }
+        .lado-capricornio .lado-nome {
+            color: #d4a373;
+        }
+        .lado-capricornio .linha-decorativa {
+            background: linear-gradient(to right, transparent, #d4a373, transparent);
+        }
+        .lado-capricornio::before {
+            background: radial-gradient(ellipse at center, rgba(212, 163, 115, 0.05), transparent 70%);
+        }
+        .lado-capricornio:hover::before {
+            background: radial-gradient(ellipse at center, rgba(212, 163, 115, 0.12), transparent 70%);
+        }
+        .lado-capricornio .particula {
+            background: #d4a373;
+            box-shadow: 0 0 10px rgba(212, 163, 115, 0.3);
+        }
+
         /* ============================================================
            RESPONSIVIDADE
         ============================================================ */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .constelacoes-wrapper {
                 flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .lado {
+                flex: 1 1 45%;
+                padding: 0.8rem;
+                min-height: 40vh;
             }
 
             .divisoria {
@@ -386,14 +431,9 @@
                 margin: auto 0;
             }
 
-            .lado {
-                padding: 0.8rem;
-                flex: 1;
-            }
-
             .simbolo-wrapper {
-                width: 80px;
-                height: 80px;
+                width: 70px;
+                height: 70px;
                 font-size: 3rem;
             }
 
@@ -426,17 +466,20 @@
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 600px) {
+            .lado {
+                flex: 1 1 100%;
+                padding: 0.5rem;
+                min-height: 25vh;
+            }
+
             .simbolo-wrapper {
                 width: 60px;
                 height: 60px;
-                font-size: 2rem;
-            }
-            .lado {
-                padding: 0.3rem;
+                font-size: 2.5rem;
             }
             .lado-nome {
-                font-size: 0.7rem;
+                font-size: 0.8rem;
                 margin-top: 0.3rem;
             }
             .titulo-principal {
@@ -460,6 +503,21 @@
             }
             .lado:hover .linha-decorativa {
                 width: 25px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .simbolo-wrapper {
+                width: 45px;
+                height: 45px;
+                font-size: 1.8rem;
+            }
+            .lado-nome {
+                font-size: 0.6rem;
+            }
+            .lado {
+                padding: 0.3rem;
+                min-height: 20vh;
             }
         }
 
@@ -604,6 +662,54 @@
                         </svg>
                     </div>
                     <span class="lado-nome">Leão</span>
+                    <span class="linha-decorativa"></span>
+                </div>
+            </div>
+
+            <!-- ===================== DIVISÓRIA ===================== -->
+            <div class="divisoria"></div>
+
+            <!-- ===================== CAPRICÓRNIO ===================== -->
+            <div class="lado lado-capricornio" data-destino="capricornio.html" data-estrela="Capricórnio">
+                <div class="lado-conteudo">
+                    <div class="simbolo-wrapper">
+                        <span class="particula" style="top:5%;right:15%;width:2px;height:2px;"></span>
+                        <span class="particula" style="top:25%;left:5%;width:3px;height:3px;"></span>
+                        <span class="particula" style="bottom:20%;right:8%;width:2px;height:2px;"></span>
+                        <span class="particula" style="bottom:10%;left:12%;width:3px;height:3px;"></span>
+                        <span class="particula" style="top:50%;left:-12%;width:2px;height:2px;"></span>
+                        <span class="particula" style="top:35%;right:-8%;width:3px;height:3px;"></span>
+
+                        <span class="orbita orbita-1"></span>
+                        <span class="orbita orbita-2"></span>
+
+                        <svg class="simbolo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Símbolo de Capricórnio: corpo de cabra com cauda de peixe -->
+                            <!-- Corpo -->
+                            <path class="traco" d="M30 70 C30 50, 45 40, 55 40 C65 40, 75 50, 75 70" />
+                            <!-- Cabeça -->
+                            <path class="traco" d="M30 70 C25 60, 20 55, 25 48 C30 42, 40 45, 38 55" />
+                            <!-- Chifre 1 -->
+                            <path class="traco" d="M25 48 C20 38, 15 42, 18 35" />
+                            <!-- Chifre 2 -->
+                            <path class="traco" d="M28 45 C25 35, 22 38, 24 30" />
+                            <!-- Olho -->
+                            <circle class="preenchimento" cx="30" cy="52" r="2" />
+                            <!-- Cauda de peixe -->
+                            <path class="traco" d="M75 70 C85 70, 90 60, 85 50 C80 42, 75 48, 78 55" />
+                            <!-- Barbatana -->
+                            <path class="traco" d="M80 55 C85 50, 88 55, 82 60" />
+                            <!-- Pernas -->
+                            <path class="traco" d="M45 70 L42 82" />
+                            <path class="traco" d="M55 70 L52 82" />
+                            <path class="traco" d="M65 70 L62 82" />
+                            <!-- Cascos -->
+                            <circle class="preenchimento" cx="42" cy="82" r="2.5" />
+                            <circle class="preenchimento" cx="52" cy="82" r="2.5" />
+                            <circle class="preenchimento" cx="62" cy="82" r="2.5" />
+                        </svg>
+                    </div>
+                    <span class="lado-nome">Capricórnio</span>
                     <span class="linha-decorativa"></span>
                 </div>
             </div>
@@ -759,14 +865,13 @@
                 const destino = this.dataset.destino;
                 const nomeEstrela = this.dataset.estrela;
 
-                // Define a cor com base na constelação
                 let corDestaque;
                 if (nomeEstrela === 'Aquário') corDestaque = '#7a9cff';
                 else if (nomeEstrela === 'Câncer') corDestaque = '#66cc99';
                 else if (nomeEstrela === 'Leão') corDestaque = '#ffaa44';
+                else if (nomeEstrela === 'Capricórnio') corDestaque = '#d4a373';
                 else corDestaque = '#ffffff';
 
-                // Cria overlay
                 const overlay = document.createElement('div');
                 overlay.style.cssText = `
                     position: fixed;
@@ -785,7 +890,6 @@
                 `;
                 document.body.appendChild(overlay);
 
-                // Canvas para o túnel
                 const tunnelStars = document.createElement('canvas');
                 tunnelStars.style.cssText = `
                     position: absolute;
@@ -796,7 +900,6 @@
                 `;
                 overlay.appendChild(tunnelStars);
 
-                // Texto da estrela que aparece no meio da viagem
                 const starName = document.createElement('div');
                 starName.style.cssText = `
                     position: absolute;
@@ -812,7 +915,6 @@
                 starName.textContent = `✦ ${nomeEstrela} ✦`;
                 overlay.appendChild(starName);
 
-                // Inicia a animação
                 setTimeout(() => {
                     overlay.style.opacity = '1';
                 }, 50);
@@ -827,7 +929,6 @@
                 resizeTunnel();
                 window.addEventListener('resize', resizeTunnel);
 
-                // Cria as estrelas do túnel
                 const starTunnel = [];
                 for (let i = 0; i < 300; i++) {
                     starTunnel.push({
@@ -876,7 +977,6 @@
 
                     frame++;
 
-                    // Mostra o nome da estrela no meio da viagem
                     if (frame > 40 && frame < 80) {
                         starName.style.opacity = Math.min(1, (frame - 40) / 15);
                         starName.style.transform = `scale(${1 + (frame - 40) * 0.008})`;
@@ -887,7 +987,6 @@
                     if (frame < totalFrames) {
                         requestAnimationFrame(drawTunnel);
                     } else {
-                        // Mantém a tela preta e redireciona sem delay
                         window.location.href = destino;
                     }
                 }
@@ -898,8 +997,7 @@
 
         console.log('🌌 Constelações — página inicial carregada.');
         console.log('🚀 Clique em qualquer constelação para uma viagem interestelar!');
-        console.log('♋ Câncer adicionado!');
-        console.log('✨ Transição corrigida — sem piscar no final.');
+        console.log('♑ Capricórnio adicionado!');
     </script>
 
 </body>
