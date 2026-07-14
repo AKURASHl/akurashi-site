@@ -7,7 +7,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 
     <style>
         * {
@@ -24,6 +24,9 @@
             overflow-x: hidden;
         }
 
+        /* ============================================================
+           FUNDO — ESTRELAS CADENTES (MANTIDO)
+        ============================================================ */
         #stars-canvas {
             position: fixed;
             top: 0;
@@ -34,6 +37,9 @@
             pointer-events: none;
         }
 
+        /* ============================================================
+           CONTAINER PRINCIPAL
+        ============================================================ */
         .container {
             position: relative;
             z-index: 1;
@@ -42,6 +48,9 @@
             padding: 2rem 1.5rem 4rem;
         }
 
+        /* ============================================================
+           HERO — TÍTULO COM EFEITO DE BRILHO
+        ============================================================ */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -50,16 +59,28 @@
             align-items: center;
             text-align: center;
             padding: 2rem 0;
+            position: relative;
         }
 
         .hero h1 {
             font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: clamp(2.8rem, 10vw, 5.5rem);
+            font-weight: 900;
+            font-size: clamp(3rem, 10vw, 5.5rem);
             color: #f0e6d0;
-            text-shadow: 0 0 30px rgba(180, 150, 200, 0.3);
+            text-shadow: 0 0 40px rgba(122, 156, 255, 0.2), 0 0 80px rgba(122, 156, 255, 0.1);
             letter-spacing: 0.1em;
             margin-bottom: 0.5rem;
+            animation: tituloBrilho 4s ease-in-out infinite;
+        }
+
+        @keyframes tituloBrilho {
+            0%,
+            100% {
+                text-shadow: 0 0 40px rgba(122, 156, 255, 0.2), 0 0 80px rgba(122, 156, 255, 0.1);
+            }
+            50% {
+                text-shadow: 0 0 60px rgba(122, 156, 255, 0.4), 0 0 120px rgba(122, 156, 255, 0.2);
+            }
         }
 
         .hero .subtitle {
@@ -67,43 +88,90 @@
             color: #b8aed0;
             font-style: italic;
             max-width: 700px;
-            border-top: 1px solid rgba(180, 150, 200, 0.2);
+            border-top: 1px solid rgba(122, 156, 255, 0.15);
             padding-top: 1rem;
             margin-top: 0.5rem;
+            position: relative;
+        }
+
+        .hero .subtitle::before {
+            content: '✦';
+            position: absolute;
+            top: -0.6rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #7a9cff;
+            font-size: 0.8rem;
+            opacity: 0.6;
         }
 
         .hero .subtitle strong {
-            color: #d4c8e8;
+            color: #7a9cff;
             font-style: normal;
         }
 
+        /* ============================================================
+           SEÇÕES
+        ============================================================ */
         section {
             margin: 4rem 0;
             padding: 2rem 0;
-            border-bottom: 1px solid rgba(180, 150, 200, 0.1);
+            border-bottom: 1px solid rgba(122, 156, 255, 0.06);
+            position: relative;
         }
         section:last-of-type {
             border-bottom: none;
         }
 
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(122, 156, 255, 0.1), transparent);
+        }
+
         h2 {
             font-family: 'Cinzel', serif;
+            font-weight: 700;
             font-size: 2rem;
             color: #d4c8e8;
             letter-spacing: 0.05em;
             margin-bottom: 2rem;
             text-align: center;
-        }
-        h2::after {
-            content: ' ✦';
-            color: #b8aed0;
-            font-size: 1.2rem;
+            position: relative;
         }
 
+        h2::after {
+            content: ' ✦';
+            color: #7a9cff;
+            font-size: 1.2rem;
+            opacity: 0.6;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #7a9cff, transparent);
+            opacity: 0.3;
+        }
+
+        /* ============================================================
+           SOBRE — GRID MELHORADO
+        ============================================================ */
         .sobre-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 2.5rem;
+            margin-top: 1rem;
         }
         @media (max-width: 700px) {
             .sobre-grid {
@@ -115,57 +183,88 @@
         .sobre-texto p {
             margin-bottom: 1rem;
             text-align: justify;
+            font-size: 1.05rem;
+            color: #d4d0d0;
+        }
+
+        .sobre-texto p::first-letter {
+            font-size: 1.6rem;
+            color: #7a9cff;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
         }
 
         .sobre-detalhes {
             background: rgba(20, 15, 30, 0.6);
             padding: 1.5rem 2rem;
-            border-radius: 12px;
+            border-radius: 16px;
             border-left: 3px solid #7a9cff;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
         }
+
+        .sobre-detalhes:hover {
+            border-left-color: #7a9cff;
+            box-shadow: 0 0 30px rgba(122, 156, 255, 0.05);
+        }
+
         .sobre-detalhes ul {
             list-style: none;
         }
         .sobre-detalhes li {
             padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(180, 150, 200, 0.08);
+            border-bottom: 1px solid rgba(122, 156, 255, 0.06);
             display: flex;
             gap: 0.8rem;
+            transition: all 0.3s ease;
         }
         .sobre-detalhes li:last-child {
             border-bottom: none;
         }
+        .sobre-detalhes li:hover {
+            padding-left: 0.5rem;
+        }
         .detalhe-label {
-            color: #b8aed0;
+            color: #7a9cff;
             font-weight: 700;
-            min-width: 90px;
+            min-width: 100px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
         }
 
+        /* ============================================================
+           CAPÍTULOS — CARD COM EFEITO GLASSMORPHISM
+        ============================================================ */
         .capitulo-card {
             background: rgba(10, 8, 18, 0.5);
-            border-radius: 16px;
-            border: 1px solid rgba(180, 150, 200, 0.08);
-            margin-bottom: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(122, 156, 255, 0.06);
+            margin-bottom: 2.5rem;
             overflow: hidden;
-            transition: border-color 0.3s;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             cursor: pointer;
+            backdrop-filter: blur(4px);
         }
+
         .capitulo-card:hover {
-            border-color: rgba(180, 150, 200, 0.25);
+            border-color: rgba(122, 156, 255, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
         }
 
         .capitulo-header {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
-            padding: 1.5rem;
+            padding: 2rem;
             align-items: center;
         }
         @media (max-width: 700px) {
             .capitulo-header {
                 grid-template-columns: 1fr;
                 text-align: center;
-                padding: 1.2rem;
+                padding: 1.5rem;
             }
         }
 
@@ -174,8 +273,14 @@
             height: auto;
             max-height: 200px;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 14px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s ease;
+        }
+
+        .capitulo-card:hover .capitulo-header img {
+            transform: scale(1.02);
+            box-shadow: 0 8px 50px rgba(122, 156, 255, 0.1);
         }
 
         .capitulo-header h3 {
@@ -183,34 +288,52 @@
             font-size: 1.6rem;
             color: #d4c8e8;
             margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
         }
+
+        .capitulo-card:hover .capitulo-header h3 {
+            color: #7a9cff;
+        }
+
         .capitulo-header blockquote {
             font-style: italic;
             color: #b8aed0;
             border-left: 3px solid #7a9cff;
             padding-left: 1.2rem;
             font-size: 0.95rem;
+            opacity: 0.8;
         }
+
         .capitulo-header .abrir-indicador {
             display: inline-block;
             margin-top: 0.8rem;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #6a5f7a;
             letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
         }
 
+        .capitulo-card:hover .abrir-indicador {
+            color: #7a9cff;
+        }
+
+        /* ============================================================
+           CONTEÚDO DO CAPÍTULO
+        ============================================================ */
         .capitulo-body {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.8s ease, padding 0.4s ease;
-            padding: 0 1.5rem;
+            transition: max-height 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.4s ease;
+            padding: 0 2rem;
             background: rgba(0, 0, 0, 0.2);
             border-top: 1px solid transparent;
         }
+
         .capitulo-body.aberto {
             max-height: 4000px;
-            padding: 2rem 1.5rem;
-            border-top-color: rgba(180, 150, 200, 0.15);
+            padding: 2rem;
+            border-top-color: rgba(122, 156, 255, 0.08);
         }
 
         .capitulo-body .texto {
@@ -219,71 +342,207 @@
         }
         .capitulo-body .texto p {
             margin-bottom: 1rem;
+            font-size: 1.02rem;
+            color: #d0d0d0;
+        }
+
+        .capitulo-body .texto p strong {
+            color: #7a9cff;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
         }
 
         .capitulo-body .imagem-destaque {
             width: 100%;
             max-height: 400px;
             object-fit: cover;
-            border-radius: 12px;
+            border-radius: 14px;
             margin: 1.5rem 0;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s ease;
         }
 
+        .capitulo-body .imagem-destaque:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 50px rgba(122, 156, 255, 0.1);
+        }
+
+        .citacao-destaque {
+            font-style: italic;
+            color: #b8aed0;
+            text-align: center;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(122, 156, 255, 0.08);
+            border-bottom: 1px solid rgba(122, 156, 255, 0.08);
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .citacao-destaque:hover {
+            color: #d4c8e8;
+            border-color: rgba(122, 156, 255, 0.2);
+        }
+
+        .citacao-destaque strong {
+            color: #7a9cff;
+            font-style: normal;
+            font-family: 'Cinzel', serif;
+        }
+
+        /* ============================================================
+           BOTÕES
+        ============================================================ */
         .btn-musica {
             display: inline-block;
             margin: 1rem 0 0.5rem;
-            padding: 0.6rem 1.8rem;
-            background: rgba(122, 199, 160, 0.15);
-            border: 1px solid rgba(122, 199, 160, 0.3);
-            border-radius: 30px;
-            color: #7ac7a0;
+            padding: 0.7rem 2rem;
+            background: rgba(122, 156, 255, 0.08);
+            border: 1px solid rgba(122, 156, 255, 0.15);
+            border-radius: 50px;
+            color: #7a9cff;
             font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            letter-spacing: 0.05em;
         }
+
         .btn-musica:hover {
-            background: rgba(122, 199, 160, 0.25);
-            border-color: #7ac7a0;
-            color: #b8f0d0;
+            background: rgba(122, 156, 255, 0.15);
+            border-color: #7a9cff;
+            color: #f0e6d0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(122, 156, 255, 0.1);
         }
+
         .btn-musica.playing {
-            background: rgba(199, 122, 122, 0.15);
-            border-color: rgba(199, 122, 122, 0.3);
+            background: rgba(199, 122, 122, 0.1);
+            border-color: rgba(199, 122, 122, 0.2);
             color: #c77a7a;
         }
 
         .btn-proximo {
             display: inline-block;
             margin-top: 1.5rem;
-            padding: 0.6rem 2rem;
-            background: rgba(180, 150, 200, 0.1);
-            border: 1px solid rgba(180, 150, 200, 0.2);
-            border-radius: 30px;
+            padding: 0.7rem 2.5rem;
+            background: rgba(122, 156, 255, 0.06);
+            border: 1px solid rgba(122, 156, 255, 0.12);
+            border-radius: 50px;
             color: #b8aed0;
             font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             text-decoration: none;
             border: none;
+            letter-spacing: 0.05em;
         }
+
         .btn-proximo:hover {
-            background: rgba(180, 150, 200, 0.2);
-            border-color: #b8aed0;
+            background: rgba(122, 156, 255, 0.12);
+            border-color: #7a9cff;
             color: #f0e6d0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(122, 156, 255, 0.08);
         }
+
         .btn-proximo.fim {
-            opacity: 0.6;
+            opacity: 0.5;
             cursor: default;
         }
         .btn-proximo.fim:hover {
-            background: rgba(180, 150, 200, 0.1);
-            border-color: rgba(180, 150, 200, 0.2);
+            background: rgba(122, 156, 255, 0.06);
+            border-color: rgba(122, 156, 255, 0.12);
             color: #b8aed0;
+            transform: none;
+            box-shadow: none;
         }
 
+        .btn-viagem {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.8rem 2.8rem;
+            background: linear-gradient(135deg, rgba(122, 156, 255, 0.12), rgba(122, 156, 255, 0.04));
+            border: 1px solid rgba(122, 156, 255, 0.2);
+            border-radius: 50px;
+            color: #7a9cff;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            animation: pulsarBotao 2.5s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-viagem::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(122, 156, 255, 0.05), transparent 50%);
+            animation: girarBrilho 8s linear infinite;
+        }
+
+        @keyframes girarBrilho {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn-viagem:hover {
+            background: linear-gradient(135deg, rgba(122, 156, 255, 0.2), rgba(122, 156, 255, 0.08));
+            border-color: #7a9cff;
+            color: #f0e6d0;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(122, 156, 255, 0.15);
+        }
+
+        @keyframes pulsarBotao {
+            0%,
+            100% {
+                box-shadow: 0 0 10px rgba(122, 156, 255, 0.05);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(122, 156, 255, 0.15);
+            }
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            margin-top: 2.5rem;
+            padding: 0.8rem 2.5rem;
+            background: rgba(180, 150, 200, 0.06);
+            border: 1px solid rgba(180, 150, 200, 0.12);
+            border-radius: 50px;
+            color: #b8aed0;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-voltar:hover {
+            background: rgba(180, 150, 200, 0.12);
+            border-color: #b8aed0;
+            color: #f0e6d0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(180, 150, 200, 0.08);
+        }
+
+        /* ============================================================
+           RODAPÉ
+        ============================================================ */
         .footer-simbolo {
             text-align: center;
             font-size: 1.2rem;
@@ -291,7 +550,8 @@
             color: #4a3f5a;
             margin-top: 4rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(180, 150, 200, 0.08);
+            border-top: 1px solid rgba(122, 156, 255, 0.06);
+            opacity: 0.6;
         }
 
         .music-control {
@@ -299,30 +559,35 @@
             bottom: 2rem;
             right: 2rem;
             z-index: 10;
-            background: rgba(20, 15, 30, 0.8);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(180, 150, 200, 0.2);
+            background: rgba(20, 15, 30, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(180, 150, 200, 0.15);
             color: #d4c8e8;
-            width: 48px;
-            height: 48px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             font-size: 1.4rem;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
+
         .music-control:hover {
             background: rgba(40, 30, 60, 0.9);
             border-color: #b8aed0;
-            transform: scale(1.05);
+            transform: scale(1.08) rotate(8deg);
+            box-shadow: 0 0 30px rgba(180, 150, 200, 0.1);
         }
 
+        /* ============================================================
+           ANIMAÇÕES DE ENTRADA
+        ============================================================ */
         .fade-in {
             opacity: 0;
-            transform: translateY(25px);
-            animation: fadeUp 1s ease forwards;
+            transform: translateY(30px);
+            animation: fadeUp 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
         @keyframes fadeUp {
             to {
@@ -331,67 +596,31 @@
             }
         }
         .delay-1 {
-            animation-delay: 0.2s;
+            animation-delay: 0.15s;
         }
         .delay-2 {
-            animation-delay: 0.5s;
+            animation-delay: 0.4s;
         }
         .delay-3 {
-            animation-delay: 0.8s;
+            animation-delay: 0.7s;
+        }
+        .delay-4 {
+            animation-delay: 1s;
         }
 
-        .btn-viagem {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.8rem 2.5rem;
-            background: rgba(122, 156, 255, 0.12);
-            border: 1px solid rgba(122, 156, 255, 0.2);
-            border-radius: 30px;
-            color: #7a9cff;
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            animation: pulsarBotao 2s ease-in-out infinite;
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 6px;
         }
-
-        .btn-viagem:hover {
-            background: rgba(122, 156, 255, 0.2);
-            border-color: #7a9cff;
-            color: #f0e6d0;
-            transform: scale(1.05);
+        ::-webkit-scrollbar-track {
+            background: #0a0a0f;
         }
-
-        @keyframes pulsarBotao {
-            0%,
-            100% {
-                box-shadow: 0 0 10px rgba(122, 156, 255, 0.1);
-            }
-            50% {
-                box-shadow: 0 0 30px rgba(122, 156, 255, 0.3);
-            }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(122, 156, 255, 0.3);
+            border-radius: 10px;
         }
-
-        .btn-voltar {
-            display: inline-block;
-            margin-top: 2.5rem;
-            padding: 0.8rem 2.5rem;
-            background: rgba(180, 150, 200, 0.08);
-            border: 1px solid rgba(180, 150, 200, 0.15);
-            border-radius: 30px;
-            color: #b8aed0;
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .btn-voltar:hover {
-            background: rgba(180, 150, 200, 0.15);
-            border-color: #b8aed0;
-            color: #f0e6d0;
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(122, 156, 255, 0.5);
         }
     </style>
 </head>
@@ -410,6 +639,9 @@
             </p>
         </header>
 
+        <!-- ============================================================
+           SOBRE
+        ============================================================ -->
         <section class="fade-in delay-1">
             <h2>Sobre</h2>
             <div class="sobre-grid">
@@ -430,17 +662,20 @@
                 </div>
             </div>
 
-            <div style="text-align: center; margin: 2rem 0;">
+            <div style="text-align: center; margin: 2.5rem 0;">
                 <button class="btn-viagem" id="btnViagem">
                     ✦ Viajar pelas estrelas ✦
                 </button>
             </div>
         </section>
 
+        <!-- ============================================================
+           CAPÍTULOS
+        ============================================================ -->
         <section class="fade-in delay-2">
             <h2>Capítulos</h2>
 
-            <!-- CAPÍTULO I -->
+            <!-- ===================== CAPÍTULO I ===================== -->
             <div class="capitulo-card" id="capitulo1">
                 <div class="capitulo-header">
                     <img src="https://setemargens.com/wp-content/uploads/2020/12/bele%CC%81m-2-e1607652843266.jpg" alt="Estrela de Belém" loading="lazy" />
@@ -452,7 +687,7 @@
                 </div>
                 <div class="capitulo-body" id="body1">
                     <div class="texto">
-                        <p><strong>Estrela Cadente</strong></p>
+                        <p><strong>✦ Estrela Cadente</strong></p>
                         <p>Em uma noite de céu estrelado, as estrelas pareciam brilhar ainda mais. Estava tão lindo observar aquele céu, as estrelas e, para melhorar ainda mais, a lua, grande e radiante, banhava tudo com sua luz prateada, tornando a paisagem ainda mais bela. Era o tipo de noite perfeita para caminhar ao lado de alguém que se ama ou simplesmente deitar sobre a grama e contemplar, em silêncio.</p>
                         <p>Em outra região, distante de qualquer vilarejo, existia uma floresta. Poucos se aproximavam daquele lugar durante a noite. As árvores bloqueavam boa parte da luz da lua, tornando aquele um ótimo lugar para se esconder, de fato.</p>
                         <p>Entretanto, todas as noites, seres encapuzados por mantos escuros dirigiam-se em direção à floresta. Aquilo era algo comum para eles, uma rotina, e naquela noite não seria diferente.</p>
@@ -466,43 +701,46 @@
                         <p>O líder daquele grupo acreditava que o melhor seria deixar o bebê onde estava ou utilizá-lo em suas próximas sessões, por assim dizer. Enquanto alguns concordavam com a ideia, outros discordavam completamente daquela atitude.</p>
                         <p>Uma certa madame, mesmo tremendo diante daquela situação, aproximou-se do bebê e o segurou em seus braços. Apesar do medo, afirmou que iria se responsabilizar por aquela criança. Disse que talvez, com ele, eles pudessem descobrir os mistérios do mundo e que aquele bebê poderia se tornar um novo membro daquele estranho grupo de pessoas.</p>
                         <p>O líder apenas olhou friamente para aquela pequena madame e, com uma voz dura, disse que, caso aquela decisão acabasse prejudicando todos no futuro, ela saberia quais seriam as consequências.</p>
-                        <p>Com a voz trêmula, ela respondeu que sabia... e que, mesmo assim, estava disposta a seguir em frente.</p>
+
+                        <div class="citacao-destaque">
+                            <p>"Com a voz trêmula, ela respondeu que sabia... e que, mesmo assim, estava disposta a seguir em frente."</p>
+                        </div>
 
                         <img src="image.png" alt="Ilustração do capítulo I" class="imagem-destaque" onerror="this.style.display='none'" />
 
                         <p>Dias, meses e, enfim, um ano se passou desde aquela noite. Aquela moça, agora chamada de mãe por todos do vilarejo, era alvo de fofocas. Fofocas como:</p>
-                        <p style="text-align: center; color: #b8aed0; font-style: italic;">— Como ela pode criar um filho sem um marido?</p>
-                        <p style="text-align: center; color: #b8aed0; font-style: italic;">— Quem diria que ela seria do tipo que teria um caso às escondidas e que ainda seria abandonada pelo amante?</p>
-                        <p style="text-align: center; color: #b8aed0; font-style: italic;">— Como pode ter um filho sendo tão jovem?</p>
+
+                        <div class="citacao-destaque" style="text-align: left; padding-left: 2rem; border-left: 3px solid rgba(122,156,255,0.2);">
+                            <p>— Como ela pode criar um filho sem um marido?</p>
+                            <p>— Quem diria que ela seria do tipo que teria um caso às escondidas e que ainda seria abandonada pelo amante?</p>
+                            <p>— Como pode ter um filho sendo tão jovem?</p>
+                        </div>
+
                         <p>O bebê, que agora se chamava Akurashi Velmorith, era sempre levado de um lado para o outro por sua mãe. Ela o carregava consigo até mesmo quando precisava orar ao deus que louvava em segredo, junto daquelas pessoas estranhas que faziam parte daquele grupo.</p>
                         <p>Ao chegar em casa, sempre exausta, colocava seu filho com muito cuidado e carinho. Então, cantava a única canção de ninar que sabia:</p>
 
-                        <p style="font-style: italic; color: #b8aed0; text-align: center; padding: 1rem 0;">
-                            Brilha, brilha, estrelinha<br />
+                        <div style="font-style: italic; color: #7a9cff; text-align: center; padding: 1.5rem 0; background: rgba(122,156,255,0.03); border-radius: 12px; margin: 1rem 0;">
+                            <p>Brilha, brilha, estrelinha<br />
                             Quero ver você brilhar<br />
                             Lá no céu, pequenininha<br />
-                            Nessa noite de luar<br />
-                            <br />
-                            Brilha, brilha, estrelinha<br />
+                            Nessa noite de luar</p>
+                            <p>Brilha, brilha, estrelinha<br />
                             O seu brilho me seduz<br />
                             Quando chega a noitinha<br />
-                            Eu me encanto com sua luz<br />
-                            <br />
-                            Brilha, brilha, estrelinha<br />
+                            Eu me encanto com sua luz</p>
+                            <p>Brilha, brilha, estrelinha<br />
                             Lá no manto celestial<br />
                             Brilha, brilha, bem branquinha<br />
-                            Que hoje é noite de Natal<br />
-                            <br />
-                            Brilha, brilha, estrelinha<br />
+                            Que hoje é noite de Natal</p>
+                            <p>Brilha, brilha, estrelinha<br />
                             Brilha, brilha lá no céu<br />
                             Vou ficar aqui quietinha<br />
-                            Pra esperar Papai Noel<br />
-                            <br />
-                            Brilha, brilha, estrelinha<br />
+                            Pra esperar Papai Noel</p>
+                            <p>Brilha, brilha, estrelinha<br />
                             Quero ver você brilhar<br />
                             Lá no céu, pequenininha<br />
-                            Nessa noite de luar
-                        </p>
+                            Nessa noite de luar</p>
+                        </div>
 
                         <button class="btn-musica" id="btnCancao">🎵 Ouvir canção de ninar</button>
                     </div>
@@ -510,7 +748,7 @@
                 </div>
             </div>
 
-            <!-- CAPÍTULO II -->
+            <!-- ===================== CAPÍTULO II ===================== -->
             <div class="capitulo-card" id="capitulo2">
                 <div class="capitulo-header">
                     <img src="https://www.star-facts.com/wp-content/uploads/2019/09/Alnilam-Epsilon-Orionis-1.webp" alt="Alnilam" loading="lazy" />
@@ -522,12 +760,16 @@
                 </div>
                 <div class="capitulo-body" id="body2">
                     <div class="texto">
-                        <p><strong>Até onde vais?</strong></p>
+                        <p><strong>✦ Até onde vais?</strong></p>
                         <p>O tempo passou, e Akurashi continuava sendo levado por sua mãe para adorar e louvar o deus que aquele grupo seguia. Sempre que iam até aquele lugar, Akurashi permanecia em silêncio, apenas observando tudo ao seu redor, principalmente a lua. Entretanto, em uma certa noite, enquanto realizavam seus sacrifícios para aquele deus, cuja existência eles nem tinham certeza, algo inesperado aconteceu. Uma luz surgiu no céu, iluminando aquela noite. Dessa vez, todos perceberam.</p>
                         <p>Surpresos com aquela visão, acreditaram que aquilo poderia ser um presente, uma confirmação de que seu deus realmente existia. A lua estava em seu ponto mais alto no céu, e todos, tomados pela felicidade e entusiasmo, começaram a procurar o local onde aquela luz havia caído. Mas quando chegaram até lá, encontraram algo que ninguém esperava. Havia uma criança no meio da cratera. Ela não chorava, não se movia, apenas permanecia parada, observando tudo ao seu redor. Sua aparência era muito semelhante à de Akurashi — pele acinzentada e manchas pelo corpo que lembravam estrelas.</p>
                         <p>Porém, diferente de Akurashi, aquela criança não foi vista com medo ou desconfiança. Para eles, ela era um presente divino, uma prova de que seu deus existia. Pela primeira vez, o líder daquele pequeno culto sorriu. Ele declarou que aquele bebê era uma dádiva de seu deus e que eles tinham a obrigação de cuidar dele, louvá-lo e ensiná-lo sobre o mundo.</p>
                         <p>Naquele momento, pela primeira vez, o líder olhou para Akurashi sem um olhar frio. Com uma expressão diferente, disse que Akurashi deveria ser ensinado e preparado para se tornar aquele que protegeria e serviria ao novo membro enviado por seu deus. Então, em um tom sério, avisou sua mãe que, quando Akurashi completasse seu quinto aniversário, começariam a ensiná-lo tudo o que ele precisaria saber para se tornar como eles e proteger aquela pequena criança que agora estava em seus braços. Mesmo a mãe não concordando em seus pensamentos apenas acenou com a cabeça.</p>
-                        <p>5 longos anos se passando. Durante esses 5 anos Akurashi sempre foi colocado próximo daquele que hoje é chamado de Sora.</p>
+
+                        <div class="citacao-destaque">
+                            <p><strong>5 longos anos se passando.</strong> Durante esses 5 anos Akurashi sempre foi colocado próximo daquele que hoje é chamado de Sora.</p>
+                        </div>
+
                         <p>Enfim, o dia chegou. Akurashi agora se encontrava no meio de uma casa abandonada em uma floresta próxima de sua casa. Ele permaneceu ali por algum tempo, esperando a chegada do líder.</p>
                         <p>Com um olhar frio, usando o mesmo manto que sempre vestia, ele chegou carregando duas espadas de madeira. Sem dizer uma palavra, jogou uma delas na direção de Akurashi e ordenou que ele o atacasse.</p>
                         <p>Ele avançou, errou o primeiro golpe e foi bloqueado diversas vezes, mas continuou insistindo. A cada movimento de Akurashi, o líder corrigia seus erros de forma severa. Sempre que ele falhava novamente, era punido — às vezes sendo atingido pela espada de madeira, outras vezes sendo obrigado a realizar exercícios físicos até seus limites. Isso persistiu por muito tempo. Muito tempo mesmo.</p>
@@ -545,9 +787,13 @@
                         <p>Enquanto acendiam as tochas, finalmente percebeu.</p>
                         <p>No centro daquele lugar havia um pequeno trono.</p>
                         <p>O líder ordenou que Akurashi levasse Sora até ele e o fizesse sentar. Sem questionar, Akurashi obedeceu. Porém, quando tentou se afastar, o líder o impediu.</p>
-                        <p>— O que está fazendo?<br />
-                        — Fique aí.<br />
-                        — Ao lado de Sora. O tempo inteiro.</p>
+
+                        <div class="citacao-destaque">
+                            <p>"— O que está fazendo?<br />
+                            — Fique aí.<br />
+                            — Ao lado de Sora. O tempo inteiro."</p>
+                        </div>
+
                         <p>Akurashi ficou confuso, mas fez o que foi ordenado, ao olhar para Sora, percebeu que ela também carregava um olhar frio. Então voltou a olhar para o líder.</p>
                         <p>Eles começaram a cantar uma canção estranha, algo que Akurashi nunca havia ouvido em toda sua vida. Um cheiro incomum começou a tomar conta do ar, mas ele não sabia identificar o que era. A fogueira foi acesa e, mais uma vez, Akurashi permaneceu em completo silêncio, apenas observando.</p>
                         <p>Até que viu duas pessoas carregando um objeto estranho. Parecia guardar algo dentro. Era grande demais para ser apenas uma caixa comum. Para Akurashi, lembrava um caixão ou algum tipo de armário, sem explicação, o objeto foi jogado nas chamas. Após a última fagulha desaparecer, o líder declarou que o ritual estava completo e que seu deus estava satisfeito, então olhou para Akurashi. Disse que ele finalmente estava quase pronto.</p>
@@ -559,7 +805,7 @@
                 </div>
             </div>
 
-            <!-- CAPÍTULO III -->
+            <!-- ===================== CAPÍTULO III ===================== -->
             <div class="capitulo-card" id="capitulo3">
                 <div class="capitulo-header">
                     <img src="https://www.ovnihoje.com/wp-content/uploads/2020/05/kachina.jpg" alt="Kachina" loading="lazy" />
@@ -571,7 +817,7 @@
                 </div>
                 <div class="capitulo-body" id="body3">
                     <div class="texto">
-                        <p><strong>O fim e o recomeço</strong></p>
+                        <p><strong>✦ O fim e o recomeço</strong></p>
                         <p>Dias, meses e anos se passaram desde aquele acontecimento. Muitas coisas ocorreram na vida de Akurashi, mas agora ele havia acabado de completar seu décimo nono aniversário, Akurashi havia mudado muito desde então. Ele se aprimorou, tornou-se alguém que faria de tudo para alcançar seus objetivos. Sua mãe nunca conseguiu mudá-lo completamente, mas conseguiu algo: fez com que ele prometesse que tentaria ser feliz, apesar de tudo.</p>
                         <p>Akurashi aprendeu a sorrir quando fosse necessário. Tornou-se alguém que vestia diferentes máscaras, mostrando apenas aquilo que as pessoas precisavam ver. Os únicos que conheciam seu verdadeiro rosto eram Sora e sua mãe. Sua mãe torcia para que, um dia, alguém além dela e de Sora também pudesse enxergar quem ele realmente era. Mas, conhecendo seu filho, sabia que isso seria algo difícil e complicado. Ainda assim, ela continuava esperando.</p>
                         <p>Dentro daquele culto, Akurashi agora era alguém extremamente respeitado. Sempre que algo acontecia, ele resolvia sozinho. Ele acreditava que trabalhar dessa forma era mais eficiente. Não gostava de depender dos outros, mas quando era necessário colaborava até concluir a missão que lhe era dada. Para Akurashi, ordens eram missões. E missões eram algo que ele não podia falhar, ele havia se transformado em uma arma.</p>
@@ -580,13 +826,21 @@
                         <p>Se alguém não acreditava no deus de outro grupo ou insultava sua fé, isso já era motivo suficiente para que sua vida fosse ameaçada. E quase sempre, quem recebia essa tarefa era Akurashi, ele nunca se importou em sujar as próprias mãos com sangue. Para ele, matar ou não matar havia se tornado algo natural, quase como respirar.</p>
                         <p>Foi assim que Akurashi finalmente se tornou aquilo que todos esperavam que ele fosse — uma arma, um assassino.</p>
                         <p>Mesmo sabendo que possuíam inimigos, eles seguiam rigorosamente uma única regra: em todas as noites de lua cheia, iriam se reunir na floresta. Acreditavam que o deus pelo qual louvavam os protegeria, que a própria lua, símbolo de seu deus, estaria ao lado deles. Quem diria que aquela seria a noite — a última noite de suas vidas.</p>
+
+                        <div class="citacao-destaque">
+                            <p><strong>⚔️ A última batalha</strong></p>
+                        </div>
+
                         <p>Enquanto realizavam suas adorações, um ataque repentino começou. Diversas flechas foram disparadas contra eles. Por causa da fogueira acesa, encontrá-los havia sido fácil, Akurashi percebeu imediatamente, eram muitos. Muitos inimigos. Uma das flechas quase atingiu Sora, que estava sentado em seu trono, mas graças aos reflexos de Akurashi, ele conseguiu protegê-la. Porém, acabou recebendo o golpe no lugar dele.</p>
                         <p>Todos passaram a gritar para que os dois fugissem.</p>
                         <p>Akurashi e Sora correram para o interior da floresta, tentando se afastar o máximo possível, mas não sabiam que estavam sendo perseguidos. Aqueles inimigos conheciam o culto, conheciam seus caminhos e não deixariam que escapassem, uma flecha foi disparada em sua direção, dessa vez, Akurashi não conseguiu impedir — ela acabou por atingir Sora.</p>
                         <p>Akurashi, sem hesitar, pediu para que Sora fugisse sem ele. Disse que iria ganhar tempo e que ele precisava confiar nele. Mesmo com seu braço escorrendo sangue devido à flecha que havia recebido antes, Akurashi continuou lutando. Ele sabia que, se enfrentasse todos com sua força máxima, talvez não sobrevivesse, mas não recuou, ele precisava, pelo menos, dar tempo para Sora escapar, a batalha foi curta.</p>
                         <p>Akurashi conseguiu feri-los e atrasá-los o suficiente para que Sora saísse daquele lugar — ao menos sua visão já não o via —, mas seu corpo já não aguentava mais. Sua vida lentamente se esvaía, sua visão começava a ficar turva.</p>
-                        <p>E a última coisa que ele viu foi a grande e majestosa lua brilhando no céu, por alguma razão, naquele momento, ela parecia mais bela do que tudo que já havia visto. Diferente de todas as outras noites, Akurashi ergueu a mão com a pouca força que ainda possuía e, olhando para a lua, murmurou:</p>
-                        <p style="font-style: italic; color: #b8aed0; text-align: center; padding: 1rem 0;">— Uma pena que eu não consegui ir até você... te alcançar.</p>
+
+                        <div class="citacao-destaque">
+                            <p>E a última coisa que ele viu foi a grande e majestosa lua brilhando no céu, por alguma razão, naquele momento, ela parecia mais bela do que tudo que já havia visto. Diferente de todas as outras noites...</p>
+                            <p style="font-size: 1.3rem; color: #7a9cff; margin-top: 0.5rem;">— Uma pena que eu não consegui ir até você... te alcançar.</p>
+                        </div>
 
                         <img src="image.png" alt="Ilustração do capítulo III" class="imagem-destaque" onerror="this.style.display='none'" />
                     </div>
@@ -596,6 +850,9 @@
 
         </section>
 
+        <!-- ============================================================
+           RODAPÉ
+        ============================================================ -->
         <div class="footer-simbolo">
             ⋆°.☾⋆.ೃ࿔*:⋆ ⋆°.☾⋆.ೃ࿔*:⋆ ⋆°.☾⋆.ೃ࿔*:⋆
         </div>
@@ -608,7 +865,7 @@
 
     <script>
         // ============================================================
-        // ESTRELAS CADENTES
+        // ESTRELAS CADENTES (MANTIDO)
         // ============================================================
         const canvas = document.getElementById('stars-canvas');
         const ctx = canvas.getContext('2d');
@@ -850,7 +1107,7 @@
         });
 
         // ============================================================
-        // BOTÃO VIAGEM — EFEITO DE HIPERESPAÇO COM IMAGEM
+        // BOTÃO VIAGEM
         // ============================================================
         const btnViagem = document.getElementById('btnViagem');
 
@@ -982,7 +1239,7 @@
         }
 
         // ============================================================
-        // EASTER EGG — ESTRELAS CADENTES A CADA 10 CLIQUES
+        // EASTER EGG
         // ============================================================
         let cliqueCount = 0;
 
