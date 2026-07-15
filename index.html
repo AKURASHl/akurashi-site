@@ -25,8 +25,18 @@
             width: 100vw;
         }
 
+        #stars-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
         /* ============================================================
-           FUNDO COM NEBULOSA ANIMADA
+           NEBULOSA ANIMADA
         ============================================================ */
         #nebulosa {
             position: fixed;
@@ -36,8 +46,8 @@
             height: 100vh;
             z-index: 0;
             pointer-events: none;
-            background: radial-gradient(ellipse at 30% 40%, rgba(80, 60, 180, 0.08), transparent 50%),
-                        radial-gradient(ellipse at 70% 60%, rgba(180, 80, 200, 0.06), transparent 50%),
+            background: radial-gradient(ellipse at 25% 30%, rgba(80, 60, 180, 0.08), transparent 50%),
+                        radial-gradient(ellipse at 75% 70%, rgba(180, 80, 200, 0.06), transparent 50%),
                         radial-gradient(ellipse at 50% 80%, rgba(60, 120, 220, 0.05), transparent 50%);
             animation: nebulosaAnim 12s ease-in-out infinite alternate;
         }
@@ -55,16 +65,6 @@
                 transform: scale(0.9) rotate(-3deg);
                 opacity: 0.7;
             }
-        }
-
-        #stars-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            pointer-events: none;
         }
 
         .container {
@@ -107,6 +107,9 @@
             }
         }
 
+        /* ============================================================
+           CONSTELAÇÕES — LAYOUT RESPONSIVO
+        ============================================================ */
         .constelacoes-wrapper {
             display: flex;
             flex: 1;
@@ -115,11 +118,15 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
+            flex-wrap: wrap;
+            padding: 0.5rem;
+            gap: 0;
         }
 
         .lado {
-            flex: 1;
-            max-width: 33.33%;
+            flex: 1 1 23%;
+            min-width: 120px;
+            max-width: 25%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -129,7 +136,7 @@
             cursor: pointer;
             transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
-            padding: 1.5rem;
+            padding: 0.8rem 0.3rem;
             background: transparent;
             border: none;
             opacity: 0;
@@ -155,46 +162,20 @@
         }
 
         .lado:hover {
-            transform: scale(1.03);
-        }
-
-        /* ============================================================
-           ONDA EXPANSIVA AO CLICAR
-        ============================================================ */
-        .onda {
-            position: absolute;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            width: 0;
-            height: 0;
-            pointer-events: none;
-            animation: ondaAnim 0.8s ease-out forwards;
-            z-index: 5;
-        }
-
-        @keyframes ondaAnim {
-            0% {
-                width: 0;
-                height: 0;
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(0.5);
-            }
-            100% {
-                width: 300px;
-                height: 300px;
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(1);
-            }
+            transform: scale(1.05);
         }
 
         .lado-aquario {
-            animation-delay: 0.3s;
+            animation-delay: 0.2s;
         }
         .lado-cancer {
-            animation-delay: 0.5s;
+            animation-delay: 0.4s;
         }
         .lado-leao {
-            animation-delay: 0.7s;
+            animation-delay: 0.6s;
+        }
+        .lado-capricornio {
+            animation-delay: 0.8s;
         }
 
         @keyframes fadeInLado {
@@ -225,7 +206,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0.5rem;
+            padding: 0.3rem;
         }
 
         /* ============================================================
@@ -233,13 +214,13 @@
         ============================================================ */
         .simbolo-wrapper {
             position: relative;
-            width: 120px;
-            height: 120px;
+            width: 90px;
+            height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-            font-size: 4.5rem;
+            font-size: 3.5rem;
             font-family: 'Cinzel', serif;
             animation: respirar 3s ease-in-out infinite;
         }
@@ -332,33 +313,34 @@
 
         .lado-nome {
             font-family: 'Cinzel', serif;
-            font-size: clamp(1.2rem, 2.5vw, 2rem);
-            margin-top: 0.8rem;
-            letter-spacing: 0.2em;
+            font-size: clamp(0.8rem, 1.5vw, 1.3rem);
+            margin-top: 0.5rem;
+            letter-spacing: 0.15em;
             transition: all 0.4s ease;
             font-weight: 400;
         }
 
         .lado:hover .lado-nome {
-            letter-spacing: 0.3em;
+            letter-spacing: 0.25em;
         }
 
         .linha-decorativa {
-            width: 30px;
+            width: 20px;
             height: 1px;
-            margin-top: 0.4rem;
+            margin-top: 0.2rem;
             transition: all 0.6s ease;
             opacity: 0.3;
         }
 
         .lado:hover .linha-decorativa {
-            width: 50px;
+            width: 35px;
             opacity: 0.8;
         }
 
         /* ============================================================
            CORES
         ============================================================ */
+        /* Aquário (Azul) */
         .lado-aquario .simbolo-svg {
             color: #7a9cff;
         }
@@ -390,6 +372,7 @@
             box-shadow: 0 0 10px rgba(122, 156, 255, 0.3);
         }
 
+        /* Câncer (Verde Esmeralda) */
         .lado-cancer .simbolo-svg {
             color: #66cc99;
         }
@@ -421,6 +404,7 @@
             box-shadow: 0 0 10px rgba(102, 204, 153, 0.3);
         }
 
+        /* Leão (Dourado) */
         .lado-leao .simbolo-svg {
             color: #ffaa44;
         }
@@ -452,6 +436,38 @@
             box-shadow: 0 0 10px rgba(255, 170, 68, 0.3);
         }
 
+        /* Capricórnio (Marrom/Dourado) */
+        .lado-capricornio .simbolo-svg {
+            color: #d4a373;
+        }
+        .lado-capricornio .simbolo-svg .traco {
+            stroke: #d4a373;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .lado-capricornio .simbolo-svg .preenchimento {
+            fill: #d4a373;
+            opacity: 0.3;
+        }
+        .lado-capricornio .lado-nome {
+            color: #d4a373;
+        }
+        .lado-capricornio .linha-decorativa {
+            background: linear-gradient(to right, transparent, #d4a373, transparent);
+        }
+        .lado-capricornio::before {
+            background: radial-gradient(ellipse at center, rgba(212, 163, 115, 0.05), transparent 70%);
+        }
+        .lado-capricornio:hover::before {
+            background: radial-gradient(ellipse at center, rgba(212, 163, 115, 0.12), transparent 70%);
+        }
+        .lado-capricornio .particula {
+            background: #d4a373;
+            box-shadow: 0 0 10px rgba(212, 163, 115, 0.3);
+        }
+
         /* ============================================================
            RESPONSIVIDADE
         ============================================================ */
@@ -460,12 +476,14 @@
                 flex-wrap: wrap;
                 justify-content: center;
                 align-items: center;
+                gap: 0;
             }
 
             .lado {
-                flex: 1 1 30%;
-                max-width: 33%;
-                padding: 0.8rem 0.3rem;
+                flex: 1 1 45%;
+                max-width: 48%;
+                min-width: 100px;
+                padding: 0.5rem 0.2rem;
                 min-height: 30vh;
             }
 
@@ -474,9 +492,9 @@
             }
 
             .simbolo-wrapper {
-                width: 80px;
-                height: 80px;
-                font-size: 3rem;
+                width: 70px;
+                height: 70px;
+                font-size: 2.8rem;
             }
 
             .simbolo-wrapper .orbita-1 {
@@ -494,17 +512,17 @@
             }
 
             .lado-nome {
-                font-size: clamp(0.8rem, 1.8vw, 1rem);
-                margin-top: 0.4rem;
-            }
-
-            .linha-decorativa {
-                width: 20px;
+                font-size: clamp(0.8rem, 2vw, 1rem);
                 margin-top: 0.3rem;
             }
 
+            .linha-decorativa {
+                width: 15px;
+                margin-top: 0.2rem;
+            }
+
             .lado:hover .linha-decorativa {
-                width: 35px;
+                width: 25px;
             }
         }
 
@@ -512,37 +530,37 @@
             .lado {
                 flex: 1 1 100%;
                 max-width: 100%;
-                padding: 0.5rem;
-                min-height: 25vh;
+                padding: 0.3rem;
+                min-height: 20vh;
             }
 
             .simbolo-wrapper {
-                width: 65px;
-                height: 65px;
-                font-size: 2.5rem;
+                width: 55px;
+                height: 55px;
+                font-size: 2rem;
             }
             .lado-nome {
-                font-size: 0.9rem;
-                margin-top: 0.3rem;
+                font-size: 0.7rem;
+                margin-top: 0.2rem;
             }
             .titulo-principal {
-                font-size: 1.1rem;
-                padding: 0.8rem 0.5rem 0.3rem;
+                font-size: 0.9rem;
+                padding: 0.5rem 0.3rem 0.2rem;
                 letter-spacing: 0.15em;
             }
             .titulo-principal::after {
-                width: 60px;
+                width: 50px;
             }
             .simbolo-wrapper .orbita-1,
             .simbolo-wrapper .orbita-2 {
                 display: none;
             }
             .linha-decorativa {
-                width: 15px;
-                margin-top: 0.2rem;
+                width: 12px;
+                margin-top: 0.1rem;
             }
             .lado:hover .linha-decorativa {
-                width: 25px;
+                width: 20px;
             }
         }
 
@@ -696,6 +714,44 @@
                 </div>
             </div>
 
+            <!-- ===================== DIVISÓRIA ===================== -->
+            <div class="divisoria"></div>
+
+            <!-- ===================== CAPRICÓRNIO ===================== -->
+            <div class="lado lado-capricornio" data-destino="capricornio.html" data-estrela="Capricórnio">
+                <div class="lado-conteudo">
+                    <div class="simbolo-wrapper">
+                        <span class="particula" style="top:5%;right:15%;width:2px;height:2px;"></span>
+                        <span class="particula" style="top:25%;left:5%;width:3px;height:3px;"></span>
+                        <span class="particula" style="bottom:20%;right:8%;width:2px;height:2px;"></span>
+                        <span class="particula" style="bottom:10%;left:12%;width:3px;height:3px;"></span>
+                        <span class="particula" style="top:50%;left:-12%;width:2px;height:2px;"></span>
+                        <span class="particula" style="top:35%;right:-8%;width:3px;height:3px;"></span>
+
+                        <span class="orbita orbita-1"></span>
+                        <span class="orbita orbita-2"></span>
+
+                        <svg class="simbolo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="traco" d="M30 70 C30 50, 45 40, 55 40 C65 40, 75 50, 75 70" />
+                            <path class="traco" d="M30 70 C25 60, 20 55, 25 48 C30 42, 40 45, 38 55" />
+                            <path class="traco" d="M25 48 C20 38, 15 42, 18 35" />
+                            <path class="traco" d="M28 45 C25 35, 22 38, 24 30" />
+                            <circle class="preenchimento" cx="30" cy="52" r="2" />
+                            <path class="traco" d="M75 70 C85 70, 90 60, 85 50 C80 42, 75 48, 78 55" />
+                            <path class="traco" d="M80 55 C85 50, 88 55, 82 60" />
+                            <path class="traco" d="M45 70 L42 82" />
+                            <path class="traco" d="M55 70 L52 82" />
+                            <path class="traco" d="M65 70 L62 82" />
+                            <circle class="preenchimento" cx="42" cy="82" r="2.5" />
+                            <circle class="preenchimento" cx="52" cy="82" r="2.5" />
+                            <circle class="preenchimento" cx="62" cy="82" r="2.5" />
+                        </svg>
+                    </div>
+                    <span class="lado-nome">Capricórnio</span>
+                    <span class="linha-decorativa"></span>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -796,26 +852,6 @@
         drawStars();
 
         // ============================================================
-        // ONDA EXPANSIVA AO CLICAR
-        // ============================================================
-        document.querySelectorAll('.lado').forEach(el => {
-            el.addEventListener('click', function(e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const onda = document.createElement('div');
-                onda.className = 'onda';
-                onda.style.left = x + 'px';
-                onda.style.top = y + 'px';
-                onda.style.borderColor = getComputedStyle(this).color || 'rgba(255,255,255,0.3)';
-                this.appendChild(onda);
-
-                setTimeout(() => onda.remove(), 800);
-            });
-        });
-
-        // ============================================================
         // MÚSICA DE FUNDO
         // ============================================================
         const musicBtn = document.getElementById('musicBtn');
@@ -862,8 +898,7 @@
 
         botoesViagem.forEach(botao => {
             botao.addEventListener('click', function(e) {
-                // Impede o redirecionamento imediato (a onda já está rodando)
-                if (e.target.closest('.onda')) return;
+                e.preventDefault();
 
                 const destino = this.dataset.destino;
                 const nomeEstrela = this.dataset.estrela;
@@ -872,6 +907,7 @@
                 if (nomeEstrela === 'Aquário') corDestaque = '#7a9cff';
                 else if (nomeEstrela === 'Câncer') corDestaque = '#66cc99';
                 else if (nomeEstrela === 'Leão') corDestaque = '#ffaa44';
+                else if (nomeEstrela === 'Capricórnio') corDestaque = '#d4a373';
                 else corDestaque = '#ffffff';
 
                 const overlay = document.createElement('div');
@@ -999,8 +1035,7 @@
 
         console.log('🌌 Constelações — página inicial carregada.');
         console.log('🚀 Clique em qualquer constelação para uma viagem interestelar!');
-        console.log('✨ Efeito de nebulosa animada ativado!');
-        console.log('🌊 Onda expansiva ao clicar!');
+        console.log('♑ Capricórnio adicionado!');
     </script>
 
 </body>
