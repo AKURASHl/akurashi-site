@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quintana — Fogo & Leão</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0604;
+            color: #f0e6d0;
+            font-family: 'Lora', serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* ===== FUNDO DE LAVA E FOGO ===== */
+        #lava-fundo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(255, 100, 20, 0.12), transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(255, 50, 10, 0.08), transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(200, 80, 20, 0.05), transparent 70%),
+                radial-gradient(ellipse at 20% 60%, rgba(255, 150, 30, 0.06), transparent 40%),
+                radial-gradient(ellipse at 80% 30%, rgba(255, 100, 0, 0.04), transparent 40%);
+            animation: lavaPulsar 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes lavaPulsar {
+            0% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.03);
+            }
+            100% {
+                opacity: 0.7;
+                transform: scale(0.97);
+            }
+        }
+
+        /* ===== ESTRELAS CADENTES (FOGO) ===== */
+        #stars-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ===== BRASAS SUBINDO ===== */
+        .brasa {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 200, 100, 0.6), rgba(255, 80, 20, 0.1));
+            box-shadow: 0 0 20px rgba(255, 100, 20, 0.3);
+            animation: subirBrasa 12s linear infinite;
+        }
+
+        @keyframes subirBrasa {
+            0% {
+                transform: translateY(110vh) scale(0.2) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.5) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .brasa:nth-child(1) { left: 10%; animation-duration: 14s; animation-delay: 0s; width: 8px; height: 8px; }
+        .brasa:nth-child(2) { left: 25%; animation-duration: 18s; animation-delay: 2s; width: 12px; height: 12px; }
+        .brasa:nth-child(3) { left: 40%; animation-duration: 11s; animation-delay: 4s; width: 6px; height: 6px; }
+        .brasa:nth-child(4) { left: 55%; animation-duration: 16s; animation-delay: 1s; width: 10px; height: 10px; }
+        .brasa:nth-child(5) { left: 70%; animation-duration: 13s; animation-delay: 3s; width: 7px; height: 7px; }
+        .brasa:nth-child(6) { left: 85%; animation-duration: 19s; animation-delay: 5s; width: 14px; height: 14px; }
+        .brasa:nth-child(7) { left: 15%; animation-duration: 15s; animation-delay: 7s; width: 9px; height: 9px; }
+        .brasa:nth-child(8) { left: 50%; animation-duration: 17s; animation-delay: 2.5s; width: 11px; height: 11px; }
+        .brasa:nth-child(9) { left: 75%; animation-duration: 12s; animation-delay: 6s; width: 5px; height: 5px; }
+        .brasa:nth-child(10) { left: 35%; animation-duration: 20s; animation-delay: 4.5s; width: 13px; height: 13px; }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 100, 20, 0.06), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: circuloFogo 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes circuloFogo {
+            0% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.6;
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-weight: 900;
+            font-size: clamp(4.5rem, 15vw, 8rem);
+            color: #f0e6d0;
+            text-shadow: 
+                0 0 40px rgba(255, 120, 30, 0.4),
+                0 0 80px rgba(255, 80, 20, 0.25),
+                0 0 160px rgba(255, 50, 10, 0.15),
+                0 0 240px rgba(200, 50, 10, 0.08);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+            animation: tituloFogo 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes tituloFogo {
+            0%, 100% {
+                text-shadow: 
+                    0 0 40px rgba(255, 120, 30, 0.4),
+                    0 0 80px rgba(255, 80, 20, 0.25),
+                    0 0 160px rgba(255, 50, 10, 0.15);
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 
+                    0 0 60px rgba(255, 150, 50, 0.6),
+                    0 0 120px rgba(255, 100, 30, 0.35),
+                    0 0 200px rgba(255, 60, 15, 0.2),
+                    0 0 280px rgba(200, 40, 10, 0.1);
+                transform: scale(1.02);
+            }
+        }
+
+        .hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #ff6a00, #ff4500, #ff6a00, transparent);
+            border-radius: 50%;
+            animation: linhaFogo 2.5s ease-in-out infinite;
+            filter: blur(0.5px);
+        }
+
+        @keyframes linhaFogo {
+            0%, 100% {
+                width: 120px;
+                opacity: 0.5;
+                filter: blur(0.5px);
+            }
+            50% {
+                width: 200px;
+                opacity: 1;
+                filter: blur(1px);
+                box-shadow: 0 0 30px rgba(255, 100, 20, 0.3);
+            }
+        }
+
+        /* ===== BOTÃO MÚSICA ===== */
+        .btn-leao-music {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.9rem 3rem;
+            background: linear-gradient(135deg, rgba(255, 100, 20, 0.15), rgba(255, 50, 10, 0.05));
+            border: 1px solid rgba(255, 100, 20, 0.25);
+            border-radius: 50px;
+            color: #ff8c42;
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            text-decoration: none;
+            letter-spacing: 0.08em;
+            animation: pulsarBotaoFogo 2.5s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 100, 20, 0.05);
+        }
+
+        .btn-leao-music::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 100, 20, 0.08), transparent 50%);
+            animation: girarFogo 8s linear infinite;
+        }
+
+        @keyframes girarFogo {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .btn-leao-music:hover {
+            background: linear-gradient(135deg, rgba(255, 100, 20, 0.25), rgba(255, 50, 10, 0.1));
+            border-color: #ff6a00;
+            color: #f0e6d0;
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 50px rgba(255, 100, 20, 0.2);
+        }
+
+        .btn-leao-music.playing {
+            background: linear-gradient(135deg, rgba(199, 70, 50, 0.15), rgba(199, 50, 30, 0.05));
+            border-color: rgba(199, 70, 50, 0.25);
+            color: #c77a5a;
+        }
+
+        @keyframes pulsarBotaoFogo {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 100, 20, 0.05); }
+            50% { box-shadow: 0 0 40px rgba(255, 100, 20, 0.15); }
+        }
+
+        /* ===== SEÇÕES ===== */
+        section {
+            margin: 4rem 0;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255, 100, 20, 0.06);
+            position: relative;
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255, 100, 20, 0.15), transparent);
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: #ff8c42;
+            letter-spacing: 0.05em;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            text-shadow: 0 0 30px rgba(255, 100, 20, 0.1);
+        }
+
+        h2::after {
+            content: ' ✦';
+            color: #ff6a00;
+            font-size: 1.2rem;
+            opacity: 0.6;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #ff6a00, transparent);
+            opacity: 0.4;
+        }
+
+        /* ===== PERFIL ===== */
+        .perfil-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-top: 1rem;
+        }
+        @media (max-width: 700px) {
+            .perfil-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .perfil-card {
+            background: rgba(20, 10, 6, 0.7);
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            border-left: 3px solid #ff6a00;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(255, 100, 20, 0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .perfil-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 100, 20, 0.03), transparent 50%);
+            pointer-events: none;
+        }
+
+        .perfil-card:hover {
+            border-left-color: #ff4500;
+            box-shadow: 0 0 50px rgba(255, 100, 20, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .perfil-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: #ff8c42;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .perfil-card ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            color: #8a7a6a;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .perfil-card ul li {
+            padding: 0.2rem 0;
+        }
+
+        /* ===== CAPÍTULOS ===== */
+        .capitulo-card {
+            background: rgba(20, 10, 6, 0.5);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 100, 20, 0.08);
+            margin-bottom: 2.5rem;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            backdrop-filter: blur(6px);
+            position: relative;
+        }
+
+        .capitulo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 100, 20, 0.02), transparent 50%);
+            pointer-events: none;
+            border-radius: 20px;
+        }
+
+        .capitulo-card:hover {
+            border-color: rgba(255, 100, 20, 0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(255, 100, 20, 0.05);
+        }
+
+        .capitulo-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        @media (max-width: 700px) {
+            .capitulo-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 1.5rem;
+            }
+        }
+
+        .capitulo-header img {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 14px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s ease;
+            border: 1px solid rgba(255, 100, 20, 0.05);
+        }
+
+        .capitulo-card:hover .capitulo-header img {
+            transform: scale(1.02);
+            box-shadow: 0 8px 50px rgba(255, 100, 20, 0.08);
+            border-color: rgba(255, 100, 20, 0.1);
+        }
+
+        .capitulo-header h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: #e8dcc8;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .capitulo-card:hover .capitulo-header h3 {
+            color: #ff8c42;
+        }
+
+        .capitulo-header blockquote {
+            font-style: italic;
+            color: #b8a898;
+            border-left: 3px solid #ff6a00;
+            padding-left: 1.2rem;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .capitulo-header .abrir-indicador {
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-size: 0.75rem;
+            color: #7a6a5a;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+        }
+
+        .capitulo-card:hover .abrir-indicador {
+            color: #ff8c42;
+        }
+
+        .capitulo-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.4s ease;
+            padding: 0 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        .capitulo-body.aberto {
+            max-height: 8000px;
+            padding: 2rem;
+            border-top-color: rgba(255, 100, 20, 0.08);
+        }
+
+        .capitulo-body .texto {
+            text-align: justify;
+            margin-bottom: 1.5rem;
+        }
+        .capitulo-body .texto p {
+            margin-bottom: 1rem;
+            font-size: 1.02rem;
+            color: #d0c8b8;
+        }
+
+        .capitulo-body .texto p strong {
+            color: #ff8c42;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+        }
+
+        .capitulo-body .imagem-destaque {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 14px;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s ease;
+            border: 1px solid rgba(255, 100, 20, 0.05);
+        }
+
+        .capitulo-body .imagem-destaque:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 50px rgba(255, 100, 20, 0.08);
+        }
+
+        /* ===== CITAÇÕES COLORIDAS ===== */
+        .citacao-roxo {
+            font-style: italic;
+            text-align: center;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(155, 89, 182, 0.2);
+            border-bottom: 1px solid rgba(155, 89, 182, 0.2);
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+            color: #c39bd3;
+            transition: all 0.3s ease;
+            background: rgba(155, 89, 182, 0.02);
+            border-radius: 8px;
+        }
+
+        .citacao-roxo:hover {
+            color: #d7bde2;
+            border-color: rgba(155, 89, 182, 0.35);
+            background: rgba(155, 89, 182, 0.04);
+        }
+
+        .citacao-roxo strong {
+            color: #9b59b6;
+            font-style: normal;
+            font-family: 'Cinzel', serif;
+        }
+
+        .citacao-vermelho {
+            font-style: italic;
+            text-align: center;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(231, 76, 60, 0.2);
+            border-bottom: 1px solid rgba(231, 76, 60, 0.2);
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+            color: #f1948a;
+            transition: all 0.3s ease;
+            background: rgba(231, 76, 60, 0.02);
+            border-radius: 8px;
+        }
+
+        .citacao-vermelho:hover {
+            color: #f5b7b1;
+            border-color: rgba(231, 76, 60, 0.35);
+            background: rgba(231, 76, 60, 0.04);
+        }
+
+        .citacao-vermelho strong {
+            color: #e74c3c;
+            font-style: normal;
+            font-family: 'Cinzel', serif;
+        }
+
+        .citacao-dourado {
+            font-style: italic;
+            text-align: center;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255, 100, 20, 0.2);
+            border-bottom: 1px solid rgba(255, 100, 20, 0.2);
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+            color: #f0c860;
+            transition: all 0.3s ease;
+            background: rgba(255, 100, 20, 0.02);
+            border-radius: 8px;
+        }
+
+        .citacao-dourado:hover {
+            color: #f0d870;
+            border-color: rgba(255, 100, 20, 0.35);
+            background: rgba(255, 100, 20, 0.04);
+        }
+
+        .citacao-dourado strong {
+            color: #ff8c42;
+            font-style: normal;
+            font-family: 'Cinzel', serif;
+        }
+
+        .separador-fogo {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #ff6a00;
+            padding: 1.5rem 0;
+            opacity: 0.5;
+            letter-spacing: 0.15em;
+            text-shadow: 0 0 20px rgba(255, 100, 20, 0.1);
+        }
+
+        /* ===== BOTÕES ===== */
+        .btn-proximo {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.7rem 2.5rem;
+            background: rgba(255, 100, 20, 0.06);
+            border: 1px solid rgba(255, 100, 20, 0.12);
+            border-radius: 50px;
+            color: #c4b8a0;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            text-decoration: none;
+            border: none;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-proximo:hover {
+            background: rgba(255, 100, 20, 0.12);
+            border-color: #ff6a00;
+            color: #f0e6d0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 100, 20, 0.08);
+        }
+
+        .btn-proximo.fim {
+            opacity: 0.5;
+            cursor: default;
+        }
+        .btn-proximo.fim:hover {
+            background: rgba(255, 100, 20, 0.06);
+            border-color: rgba(255, 100, 20, 0.12);
+            color: #c4b8a0;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            margin-top: 2.5rem;
+            padding: 0.8rem 2.5rem;
+            background: rgba(255, 100, 20, 0.06);
+            border: 1px solid rgba(255, 100, 20, 0.12);
+            border-radius: 50px;
+            color: #ff8c42;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-voltar::before {
+            content: '✦ ';
+            color: #ff6a00;
+            opacity: 0.6;
+        }
+
+        .btn-voltar:hover {
+            background: rgba(255, 100, 20, 0.12);
+            border-color: #ff6a00;
+            color: #f0e6d0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 100, 20, 0.08);
+        }
+
+        /* ===== RODAPÉ ===== */
+        .footer-simbolo {
+            text-align: center;
+            font-size: 1.2rem;
+            letter-spacing: 0.2em;
+            color: #5a4a3a;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 100, 20, 0.06);
+            opacity: 0.6;
+        }
+
+        /* ===== CONTROLE DE MÚSICA ===== */
+        .music-control {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 10;
+            background: rgba(20, 10, 6, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 100, 20, 0.15);
+            color: #ff8c42;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 0 30px rgba(255, 100, 20, 0.03);
+        }
+
+        .music-control:hover {
+            background: rgba(40, 20, 12, 0.9);
+            border-color: #ff6a00;
+            transform: scale(1.08) rotate(8deg);
+            box-shadow: 0 0 40px rgba(255, 100, 20, 0.1);
+        }
+
+        .audio-indicador {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            z-index: 9;
+            background: rgba(20, 10, 6, 0.7);
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: #c4b8a0;
+            border: 1px solid rgba(255, 100, 20, 0.1);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+
+        .audio-indicador.visivel {
+            opacity: 1;
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+        }
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .delay-1 { animation-delay: 0.15s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.7s; }
+        .delay-4 { animation-delay: 1s; }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0604;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 100, 20, 0.3);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 100, 20, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== FUNDO DE LAVA ===== -->
+    <div id="lava-fundo"></div>
+
+    <!-- ===== BRASAS ===== -->
+    <div class="brasa"></div>
+    <div class="brasa"></div>
+    <div class="brasa"></div>
+    <div class="brasa"></div>
+    <div class="brasa"></div>
+    <div class="brasa"></div>
+    <div class="brasa"></div>
+    <div class="brasa"></div>
+    <div class="brasa"></div>
+    <div class="brasa"></div>
+
+    <!-- ===== ESTRELAS ===== -->
+    <canvas id="stars-canvas"></canvas>
+
+    <!-- ===== CONTROLES ===== -->
+    <button class="music-control" id="musicBtn" aria-label="Controle de música">🔊</button>
+    <div class="audio-indicador" id="audioIndicador">
+        <span id="audioStatus">Música ambiente</span>
+    </div>
+
+    <!-- ===== CONTEÚDO ===== -->
+    <div class="container">
+
+        <header class="hero fade-in">
+            <h1>Quintana</h1>
+            <button class="btn-leao-music" id="btnLeaoMusic">
+                Ouvir música
+            </button>
+        </header>
+
+        <section class="fade-in delay-1">
+            <h2>Perfil</h2>
+            <div class="perfil-grid">
+                <div class="perfil-card">
+                    <h3>Físico</h3>
+                    <ul>
+                        <li>· · ·</li>
+                    </ul>
+                </div>
+                <div class="perfil-card">
+                    <h3>Personalidade</h3>
+                    <ul>
+                        <li>· · ·</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="fade-in delay-2">
+            <h2>Capítulos</h2>
+
+            <!-- CAPÍTULO I -->
+            <div class="capitulo-card" id="capitulo1">
+                <div class="capitulo-header">
+                    <img src="quintana_cap1.png" alt="Capítulo I" class="imagem-destaque" onerror="this.style.display='none'" />
+                    <div>
+                        <h3>Capítulo I — O Início</h3>
+                        <blockquote>"Quintana, meu bebê, você se tornará um grande homem no futuro."</blockquote>
+                        <span class="abrir-indicador">▼ Clique para ler</span>
+                    </div>
+                </div>
+                <div class="capitulo-body" id="body1">
+                    <div class="texto">
+                        <p>Em uma humilde cabana, isolada ressoava o som da chuva, o choro de um recém-nascido. Ao lado da cama, um homem observava a cena com um sorriso no rosto. Seus olhos brilhavam ao ver sua esposa segurando delicadamente o bebê nos braços. Apesar da tempestade do lado de fora, naquele momento só existia paz.</p>
+
+                        <p>O recém-nascido chorava, enquanto seus pais o observavam com esperança. A mão de sua mãe se aproximava lentamente de seu filho ao tocar em seu rosto dizia com seus olhos brilhando:</p>
+
+                        <div class="citacao-roxo">
+                            <p><strong>— Quintana, meu bebê, você se tornará um grande homem no futuro. Sua mãe estará sempre consigo.</strong></p>
+                        </div>
+
+                        <p>As manhãs se passaram, e Quintana, a cada dia, crescia mais e mais. Certo dia, enquanto seus pais brincavam com ele, Quintana pronunciou suas primeiras palavras:</p>
+
+                        <div class="citacao-vermelho">
+                            <p><strong>— Ma... ma... mamã!</strong></p>
+                        </div>
+
+                        <p>Naquele exato momento, os olhos de seus pais brilharam. Um sorriso puro e gentil iluminou o rosto de sua mãe, enquanto seu pai, emocionado, repetia:</p>
+
+                        <div class="citacao-dourado">
+                            <p><strong>— Viu só, querida? Agora diga: papai!</strong></p>
+                        </div>
+
+                        <p>Muito tempo se passou, e Quintana já era capaz de engatinhar. Em um dia qualquer, enquanto passeava com sua mãe por um vilarejo próximo de sua casa, observava atentamente todos os cantos. Percebia que quase ninguém era igual a ele; cada pessoa possuía características diferentes. Aquela diversidade lhe parecia algo realmente incrível.</p>
+
+                        <p>Enquanto isso, sua mãe comprava carne e frutas. Ao retornarem para casa, ela descascou e cortou deliciosas maçãs para seu querido e amável filho.</p>
+
+                        <p>Quintana passava o entardecer observando o seu pai treinando com bonecos de madeira. Ele aparentava saber muito sobre artes marciais. Seu pai, percebendo seu filho o observando, sorri e diz a ele que um dia seria seu tutor, o treinaria para que seu filho possa se proteger.</p>
+
+                        <p>Quando anoitece, seu pai leva sua família para um pequeno festival que estava ocorrendo no vilarejo. Os olhos de Quintana brilhavam, as pessoas sorrindo e rindo, correndo pra lá e pra cá, barracas sob a calçada.</p>
+
+                        <p>Aquela noite foi tão divertida que, ao chegarem em casa, Quintana, que já estava completamente esgotado, assim que se deitou, adormeceu quase imediatamente, enquanto seus pais o observavam em silêncio, felizes por poderem lhe proporcionar momentos tão simples, mas tão especiais.</p>
+
+                        <div class="separador-fogo">
+                            ✦ ⋆｡ ﾟ ☁︎｡ ⋆｡ ﾟ ☾ ﾟ ｡ ⋆ — Próximo Capítulo — ⋆｡ ﾟ ☁︎｡ ⋆｡ ﾟ ☾ ﾟ ｡ ⋆ ✦
+                        </div>
+                    </div>
+                    <button class="btn-proximo" onclick="abrirCapitulo('capitulo2')">Próximo Capítulo →</button>
+                </div>
+            </div>
+
+            <!-- CAPÍTULO II -->
+            <div class="capitulo-card" id="capitulo2">
+                <div class="capitulo-header">
+                    <img src="quintana_cap2.png" alt="Capítulo II" class="imagem-destaque" onerror="this.style.display='none'" />
+                    <div>
+                        <h3>Capítulo II — Infância</h3>
+                        <blockquote>"Um aniversário entre lâminas e punhos."</blockquote>
+                        <span class="abrir-indicador">▼ Clique para ler</span>
+                    </div>
+                </div>
+                <div class="capitulo-body" id="body2">
+                    <div class="texto">
+                        <p>Atualmente, Quintana acaba de completar seu décimo aniversário. Tudo ocorria como qualquer outro dia, ou melhor, como qualquer aniversário anterior a esse.</p>
+
+                        <p>Mas algo estava diferente. O ambiente estava alegre, porém Quintana sentia que algo não estava certo. Ele tinha o pressentimento de que algo maior ocorreria, mas era apenas um sentimento ruim, o qual decidiu ignorar.</p>
+
+                        <p>Tudo estava ocorrendo de forma maravilhosa. Seu décimo aniversário finalmente estava acontecendo. Logo, poderia aprender artes marciais com seu pai. Esse pensamento o animava a cada segundo que passava.</p>
+
+                        <p>Quintana, apesar dos muitos amigos que tinha na aldeia, preferia passar esses momentos apenas com seus pais. Com o tempo passando e os momentos felizes cada vez só aumentando, o pai de Quintana o faz uma pergunta bem séria:</p>
+
+                        <div class="citacao-dourado">
+                            <p><strong>— Quintana, meu filho, para o que você busca poder?</strong></p>
+                        </div>
+
+                        <div class="citacao-roxo">
+                            <p><strong>— Meu pai, eu desejo poder pois quero conhecer o mundo, me aventurar, mas acima disso, proteger aqueles que amo. E isso inclui vocês.</strong></p>
+                        </div>
+
+                        <p>A voz, as expressões, os gestos, tudo indicava que seu filho estava falando sério. Passou alguns minutos calado e logo o questionou mais uma vez, mas dessa vez tirando uma espada, uma manopla e um arco de um baú.</p>
+
+                        <div class="citacao-dourado">
+                            <p><strong>— Meu filho, qual dessas armas mais o atrai? Essa resposta decidirá se eu o treinarei ou não.</strong></p>
+                            <p><strong>— Eu escolho a manopla, meu pai.</strong></p>
+                            <p><strong>— Por que não escolheu a espada ou o arco?</strong></p>
+                            <p><strong style="color: #e74c3c;">— Não escolhi a espada pois não busco seguir o caminho da espada, prefiro evitar matar pessoas. E o arco, pois não me sinto confortável com ele.</strong></p>
+                        </div>
+
+                        <p>O pai apenas aceitou a resposta de seu filho, mesmo tentando esconder o pequeno sorriso em seu rosto:</p>
+
+                        <div class="citacao-dourado">
+                            <p><strong>— Vá dormir, tá bom? Precisará acordar bem cedo amanhã.</strong></p>
+                        </div>
+
+                        <p>O fogo na lareira logo se apagava, o calor logo se esvaziava daquela pequena sala, aquela casa, aquela cabana passava uma harmonia, um sentimento tão bom. Uma pena que a vida sempre vem com surpresas e desgraças sobre a vida de qualquer um, não é?</p>
+
+                        <p>Bandidos se aproximavam da casa daquela pequena família. Seu pai, que ainda não havia adormecido, passou a escutar barulhos vindos da sala, sons de alguém mexendo na maçaneta da porta. Rapidamente, ele correu para pegar um equipamento em seu baú, acordando sua esposa e pedindo que ela fosse até o quarto de seu filho e se escondesse com ele.</p>
+
+                        <p>Seu pai segurava algo nas mãos que lembrava uma espécie de manopla. Enquanto Quintana e sua mãe se escondiam, ele se dirigia sorrateiramente até onde os bandidos estavam.</p>
+
+                        <p>Por dentro, Quintana repetia, corajosamente, que iria proteger sua mãe. Porém, seu corpo tremia. Ele cerrava os punhos, tentando fazer o tremor parar. Sua mãe, vendo o estado do filho, apenas o abraçou e sussurrou:</p>
+
+                        <div class="citacao-roxo">
+                            <p><strong>— Meu pequeno e corajoso, está tudo bem. Tudo ficará bem. Você não precisa me proteger, pois eu o protegerei. Afinal, este é o nosso papel.</strong></p>
+                        </div>
+
+                        <p>Quintana apenas ouviu em completo silêncio.</p>
+
+                        <p>Enquanto isso, seu pai acabava sorrateiramente com cada um dos bandidos, até que, enfim, chegou a vez do último. Entretanto, dessa vez, ele não conseguiu pegá-lo desprevenido, dando início a uma batalha de socos e lâminas.</p>
+
+                        <p>O som ecoava por toda a casa. Por dentro, Quintana queimava de vontade de ajudar seu pai, mas não tinha forças para isso. Além disso, sua mãe, por mais gentil que fosse e por mais reconfortantes que fossem suas palavras, também estava com medo. Mesmo sendo apenas uma criança, Quintana percebeu que ela estava assustada, mas tentava se manter corajosa diante dele.</p>
+
+                        <p>Quando o som da batalha enfim cessou, uma porta foi aberta. Seu pai estava vivo, apenas com alguns ferimentos. Sua mãe, ao vê-lo naquele estado, começou a chorar, mas suas lágrimas eram de alívio, pois todos haviam sobrevivido.</p>
+
+                        <div class="citacao-dourado" style="font-size: 1.2rem;">
+                            <p><strong>Diante de tudo aquilo, Quintana prometeu a si mesmo que um dia seria tão forte quanto seu pai, protegendo todos aqueles que amava.</strong></p>
+                        </div>
+
+                        <div class="separador-fogo">
+                            ✦ ⋆｡ ﾟ ☁︎｡ ⋆｡ ﾟ ☾ ﾟ ｡ ⋆ — Fim (por enquanto) — ⋆｡ ﾟ ☁︎｡ ⋆｡ ﾟ ☾ ﾟ ｡ ⋆ ✦
+                        </div>
+                    </div>
+                    <button class="btn-proximo fim">✦ Fim da história ✦</button>
+                </div>
+            </div>
+
+        </section>
+
+        <div class="footer-simbolo">
+            ⋆｡ ﾟ ☁︎｡ ⋆｡ ﾟ ☾ ﾟ ｡ ⋆ ⋆｡ ﾟ ☁︎｡ ⋆｡ ﾟ ☾ ﾟ ｡ ⋆ ⋆｡ ﾟ ☁︎｡ ⋆｡ ﾟ ☾ ﾟ ｡ ⋆
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="btn-voltar">Voltar às constelações</a>
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        // ESTRELAS CADENTES (FOGO)
+        // ============================================================
+        const canvas = document.getElementById('stars-canvas');
+        const ctx = canvas.getContext('2d');
+        let W, H;
+
+        function resizeCanvas() {
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const stars = [];
+        for (let i = 0; i < 160; i++) {
+            stars.push({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                r: Math.random() * 1.8 + 0.5,
+                alpha: Math.random() * 0.8 + 0.2,
+                speed: Math.random() * 0.008 + 0.003,
+                cor: Math.random() > 0.7 ? 
+                    `rgba(255, ${100 + Math.random() * 80}, 20, ` : 
+                    `rgba(255, ${180 + Math.random() * 60}, 150, `
+            });
+        }
+
+        let meteors = [];
+
+        function spawnMeteor() {
+            const x = Math.random() * W * 0.8 + W * 0.1;
+            const y = Math.random() * H * 0.3;
+            const angle = Math.PI / 4 + (Math.random() - 0.5) * 0.5;
+            const speed = 6 + Math.random() * 10;
+            const life = 120 + Math.random() * 100;
+            meteors.push({
+                x,
+                y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                life,
+                maxLife: life,
+                size: 2 + Math.random() * 3
+            });
+        }
+
+        setInterval(() => {
+            if (meteors.length < 8) spawnMeteor();
+        }, 2500 + Math.random() * 4000);
+
+        for (let i = 0; i < 4; i++) setTimeout(spawnMeteor, i * 700);
+
+        function drawStars() {
+            ctx.clearRect(0, 0, W, H);
+
+            stars.forEach(s => {
+                const flicker = 0.7 + 0.3 * Math.sin(Date.now() * s.speed);
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = `${s.cor}${s.alpha * flicker})`;
+                ctx.fill();
+            });
+
+            for (let i = meteors.length - 1; i >= 0; i--) {
+                const m = meteors[i];
+                m.x += m.vx;
+                m.y += m.vy;
+                m.life--;
+
+                const progress = 1 - (m.life / m.maxLife);
+                const alpha = 1 - progress * 0.9;
+
+                const gradient = ctx.createRadialGradient(m.x, m.y, 0, m.x, m.y, m.size * 10);
+                gradient.addColorStop(0, `rgba(255, 200, 100, ${alpha})`);
+                gradient.addColorStop(0.2, `rgba(255, 150, 50, ${alpha * 0.7})`);
+                gradient.addColorStop(0.5, `rgba(255, 80, 20, ${alpha * 0.4})`);
+                gradient.addColorStop(1, 'rgba(255, 50, 10, 0)');
+
+                ctx.beginPath();
+                ctx.arc(m.x, m.y, m.size * 8, 0, Math.PI * 2);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc(m.x, m.y, m.size * 0.8, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 230, 180, ${alpha * 0.9})`;
+                ctx.fill();
+
+                if (m.life <= 0 || m.x > W + 50 || m.y > H + 50) {
+                    meteors.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(drawStars);
+        }
+        drawStars();
+
+        // ============================================================
+        // SISTEMA DE ÁUDIO
+        // ============================================================
+        const musicBtn = document.getElementById('musicBtn');
+        const audioIndicador = document.getElementById('audioIndicador');
+        const audioStatus = document.getElementById('audioStatus');
+
+        let musicaAmbiente = null;
+        let somFloresta = null;
+        let isPlayingMusic = false;
+        let isPlayingForest = false;
+        let capituloAberto = false;
+
+        function initAudios() {
+            if (!musicaAmbiente) {
+                musicaAmbiente = new Audio('background-music.mp3');
+                musicaAmbiente.loop = true;
+                musicaAmbiente.volume = 0.3;
+            }
+            if (!somFloresta) {
+                somFloresta = new Audio('forest-sound.mp3');
+                somFloresta.loop = true;
+                somFloresta.volume = 0.45;
+            }
+        }
+
+        function tocarMusicaAmbiente() {
+            initAudios();
+            if (somFloresta && !somFloresta.paused) {
+                somFloresta.pause();
+                isPlayingForest = false;
+            }
+            if (musicaAmbiente) {
+                musicaAmbiente.play().catch(() => {});
+                isPlayingMusic = true;
+                audioStatus.textContent = '🎵 Música ambiente';
+                audioIndicador.classList.add('visivel');
+                musicBtn.textContent = '🎵';
+            }
+        }
+
+        function tocarSomFloresta() {
+            initAudios();
+            if (musicaAmbiente && !musicaAmbiente.paused) {
+                musicaAmbiente.pause();
+                isPlayingMusic = false;
+            }
+            if (somFloresta) {
+                somFloresta.play().catch(() => {});
+                isPlayingForest = true;
+                audioStatus.textContent = '🌿 Som da floresta';
+                audioIndicador.classList.add('visivel');
+                musicBtn.textContent = '🌿';
+            }
+        }
+
+        function pausarTudo() {
+            if (musicaAmbiente && !musicaAmbiente.paused) {
+                musicaAmbiente.pause();
+                isPlayingMusic = false;
+            }
+            if (somFloresta && !somFloresta.paused) {
+                somFloresta.pause();
+                isPlayingForest = false;
+            }
+            audioIndicador.classList.remove('visivel');
+            musicBtn.textContent = '🔇';
+        }
+
+        function alternarAudio() {
+            initAudios();
+            const musicPlaying = musicaAmbiente && !musicaAmbiente.paused;
+            const forestPlaying = somFloresta && !somFloresta.paused;
+
+            if (musicPlaying || forestPlaying) {
+                pausarTudo();
+            } else {
+                if (capituloAberto) {
+                    tocarSomFloresta();
+                } else {
+                    tocarMusicaAmbiente();
+                }
+            }
+        }
+
+        musicBtn.addEventListener('click', alternarAudio);
+
+        document.addEventListener('click', () => {
+            if (!musicaAmbiente && !somFloresta) {
+                initAudios();
+                tocarMusicaAmbiente();
+            }
+        }, { once: true });
+
+        // ============================================================
+        // MÚSICA DO LEÃO
+        // ============================================================
+        const btnLeaoMusic = document.getElementById('btnLeaoMusic');
+        let audioLeao = null;
+        let isPlayingLeao = false;
+        let audioLeaoInicializado = false;
+
+        function iniciarMusicaLeao() {
+            if (audioLeaoInicializado) return;
+
+            try {
+                audioLeao = new Audio('leao-music.mp3');
+                audioLeao.loop = true;
+                audioLeao.volume = 0.5;
+
+                audioLeao.addEventListener('ended', () => {
+                    isPlayingLeao = false;
+                    btnLeaoMusic.textContent = 'Ouvir música';
+                    btnLeaoMusic.classList.remove('playing');
+                });
+
+                audioLeao.addEventListener('error', function() {
+                    btnLeaoMusic.textContent = 'Ouvir música';
+                    btnLeaoMusic.classList.remove('playing');
+                    isPlayingLeao = false;
+                    if (musicaAmbiente && !isPlayingMusic) {
+                        musicaAmbiente.play().catch(() => {});
+                        isPlayingMusic = true;
+                        musicBtn.textContent = '🎵';
+                    }
+                });
+
+                audioLeaoInicializado = true;
+
+                if (musicaAmbiente && isPlayingMusic) {
+                    musicaAmbiente.pause();
+                    isPlayingMusic = false;
+                    musicBtn.textContent = '🔇';
+                }
+
+                audioLeao.play()
+                    .then(() => {
+                        isPlayingLeao = true;
+                        btnLeaoMusic.textContent = '⏹️ Parar música';
+                        btnLeaoMusic.classList.add('playing');
+                    })
+                    .catch(() => {
+                        btnLeaoMusic.textContent = 'Ouvir música';
+                        if (musicaAmbiente && !isPlayingMusic) {
+                            musicaAmbiente.play().catch(() => {});
+                            isPlayingMusic = true;
+                            musicBtn.textContent = '🎵';
+                        }
+                    });
+
+            } catch (e) {
+                console.error('Erro ao criar player:', e);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(iniciarMusicaLeao, 600);
+        });
+
+        document.addEventListener('click', function iniciarPorClique() {
+            if (!audioLeaoInicializado) {
+                iniciarMusicaLeao();
+            }
+            document.removeEventListener('click', iniciarPorClique);
+        }, { once: true });
+
+        if (btnLeaoMusic) {
+            btnLeaoMusic.addEventListener('click', function() {
+                if (!audioLeaoInicializado) {
+                    iniciarMusicaLeao();
+                    return;
+                }
+
+                if (isPlayingLeao) {
+                    audioLeao.pause();
+                    isPlayingLeao = false;
+                    btnLeaoMusic.textContent = 'Ouvir música';
+                    btnLeaoMusic.classList.remove('playing');
+
+                    if (musicaAmbiente && !isPlayingMusic) {
+                        musicaAmbiente.play().catch(() => {});
+                        isPlayingMusic = true;
+                        musicBtn.textContent = '🎵';
+                    }
+                    return;
+                }
+
+                if (musicaAmbiente && isPlayingMusic) {
+                    musicaAmbiente.pause();
+                    isPlayingMusic = false;
+                    musicBtn.textContent = '🔇';
+                }
+
+                audioLeao.play()
+                    .then(() => {
+                        isPlayingLeao = true;
+                        btnLeaoMusic.textContent = '⏹️ Parar música';
+                        btnLeaoMusic.classList.add('playing');
+                    })
+                    .catch(() => {
+                        alert('Clique na página primeiro e tente novamente.');
+                        if (musicaAmbiente && !isPlayingMusic) {
+                            musicaAmbiente.play().catch(() => {});
+                            isPlayingMusic = true;
+                            musicBtn.textContent = '🎵';
+                        }
+                    });
+            });
+        }
+
+        // ============================================================
+        // CAPÍTULOS
+        // ============================================================
+        function abrirCapitulo(id) {
+            const card = document.getElementById(id);
+            if (card) {
+                const body = card.querySelector('.capitulo-body');
+                if (body) {
+                    const isOpen = body.classList.contains('aberto');
+
+                    document.querySelectorAll('.capitulo-body.aberto').forEach(b => {
+                        if (b !== body) {
+                            b.classList.remove('aberto');
+                            const indicador = b.closest('.capitulo-card').querySelector('.abrir-indicador');
+                            if (indicador) indicador.textContent = '▼ Clique para ler';
+                        }
+                    });
+
+                    body.classList.toggle('aberto');
+                    const indicador = card.querySelector('.abrir-indicador');
+
+                    if (!isOpen) {
+                        indicador.textContent = '▲ Fechar';
+                        capituloAberto = true;
+                        tocarSomFloresta();
+                        setTimeout(() => {
+                            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
+                    } else {
+                        indicador.textContent = '▼ Clique para ler';
+                        capituloAberto = false;
+                        const algumAberto = document.querySelector('.capitulo-body.aberto');
+                        if (!algumAberto) {
+                            tocarMusicaAmbiente();
+                        }
+                    }
+                }
+            }
+        }
+
+        document.querySelectorAll('.capitulo-card').forEach(card => {
+            const header = card.querySelector('.capitulo-header');
+            if (header) {
+                header.style.cursor = 'pointer';
+                header.addEventListener('click', function(e) {
+                    if (e.target.closest('.btn-proximo')) return;
+                    const id = card.id;
+                    if (id) abrirCapitulo(id);
+                });
+            }
+        });
+
+        console.log('🔥 Quintana — Fogo & Leão — página carregada.');
+        console.log('🔥 Link direto para a constelação de Leão na página inicial!');
+    </script>
+</body>
+</html>
