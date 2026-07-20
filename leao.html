@@ -33,7 +33,7 @@
             height: 100vh;
             z-index: 0;
             pointer-events: none;
-            background: 
+            background:
                 radial-gradient(ellipse at 30% 20%, rgba(255, 100, 20, 0.12), transparent 50%),
                 radial-gradient(ellipse at 70% 80%, rgba(255, 50, 10, 0.08), transparent 50%),
                 radial-gradient(ellipse at 50% 50%, rgba(200, 80, 20, 0.05), transparent 70%),
@@ -158,7 +158,7 @@
             font-weight: 900;
             font-size: clamp(4.5rem, 15vw, 8rem);
             color: #f0e6d0;
-            text-shadow: 
+            text-shadow:
                 0 0 40px rgba(255, 120, 30, 0.4),
                 0 0 80px rgba(255, 80, 20, 0.25),
                 0 0 160px rgba(255, 50, 10, 0.15),
@@ -170,15 +170,16 @@
         }
 
         @keyframes tituloFogo {
-            0%, 100% {
-                text-shadow: 
+            0%,
+            100% {
+                text-shadow:
                     0 0 40px rgba(255, 120, 30, 0.4),
                     0 0 80px rgba(255, 80, 20, 0.25),
                     0 0 160px rgba(255, 50, 10, 0.15);
                 transform: scale(1);
             }
             50% {
-                text-shadow: 
+                text-shadow:
                     0 0 60px rgba(255, 150, 50, 0.6),
                     0 0 120px rgba(255, 100, 30, 0.35),
                     0 0 200px rgba(255, 60, 15, 0.2),
@@ -202,7 +203,8 @@
         }
 
         @keyframes linhaFogo {
-            0%, 100% {
+            0%,
+            100% {
                 width: 120px;
                 opacity: 0.5;
                 filter: blur(0.5px);
@@ -248,8 +250,12 @@
         }
 
         @keyframes girarFogo {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .btn-leao-music:hover {
@@ -267,8 +273,13 @@
         }
 
         @keyframes pulsarBotaoFogo {
-            0%, 100% { box-shadow: 0 0 15px rgba(255, 100, 20, 0.05); }
-            50% { box-shadow: 0 0 40px rgba(255, 100, 20, 0.15); }
+            0%,
+            100% {
+                box-shadow: 0 0 15px rgba(255, 100, 20, 0.05);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 100, 20, 0.15);
+            }
         }
 
         /* ===== SEÇÕES ===== */
@@ -375,7 +386,7 @@
             font-family: 'Cinzel', serif;
             font-size: 1.2rem;
             color: #ff8c42;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             text-align: center;
         }
 
@@ -383,13 +394,22 @@
             list-style: none;
             padding: 0;
             text-align: center;
-            color: #8a7a6a;
-            font-style: italic;
+            color: #d0c8b8;
             font-size: 0.95rem;
         }
 
         .perfil-card ul li {
-            padding: 0.2rem 0;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(255, 100, 20, 0.04);
+        }
+
+        .perfil-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .perfil-card ul li .destaque {
+            color: #ff8c42;
+            font-weight: 700;
         }
 
         /* ===== CAPÍTULOS ===== */
@@ -520,7 +540,6 @@
         }
 
         .capitulo-body .texto p strong {
-            color: #ff8c42;
             font-family: 'Cinzel', serif;
             font-weight: 700;
         }
@@ -541,85 +560,62 @@
             box-shadow: 0 8px 50px rgba(255, 100, 20, 0.08);
         }
 
-        /* ===== CITAÇÕES COLORIDAS ===== */
-        .citacao-roxo {
+        /* ============================================================
+           ESTILOS DAS FALAS COLORIDAS
+        ============================================================ */
+        .fala-rosa {
+            color: #ff6b9d;
+            font-weight: 700;
             font-style: italic;
-            text-align: center;
-            padding: 1.5rem 0;
-            border-top: 1px solid rgba(155, 89, 182, 0.2);
-            border-bottom: 1px solid rgba(155, 89, 182, 0.2);
-            margin: 1.5rem 0;
-            font-size: 1.1rem;
-            color: #c39bd3;
-            transition: all 0.3s ease;
-            background: rgba(155, 89, 182, 0.02);
-            border-radius: 8px;
         }
-
-        .citacao-roxo:hover {
-            color: #d7bde2;
-            border-color: rgba(155, 89, 182, 0.35);
-            background: rgba(155, 89, 182, 0.04);
-        }
-
-        .citacao-roxo strong {
-            color: #9b59b6;
-            font-style: normal;
-            font-family: 'Cinzel', serif;
-        }
-
-        .citacao-vermelho {
-            font-style: italic;
-            text-align: center;
-            padding: 1.5rem 0;
-            border-top: 1px solid rgba(231, 76, 60, 0.2);
-            border-bottom: 1px solid rgba(231, 76, 60, 0.2);
-            margin: 1.5rem 0;
-            font-size: 1.1rem;
-            color: #f1948a;
-            transition: all 0.3s ease;
-            background: rgba(231, 76, 60, 0.02);
-            border-radius: 8px;
-        }
-
-        .citacao-vermelho:hover {
-            color: #f5b7b1;
-            border-color: rgba(231, 76, 60, 0.35);
-            background: rgba(231, 76, 60, 0.04);
-        }
-
-        .citacao-vermelho strong {
+        .fala-vermelho {
             color: #e74c3c;
-            font-style: normal;
-            font-family: 'Cinzel', serif;
-        }
-
-        .citacao-dourado {
+            font-weight: 700;
             font-style: italic;
+        }
+        .fala-roxo {
+            color: #9b59b6;
+            font-weight: 700;
+            font-style: italic;
+        }
+        .fala-laranja {
+            color: #e67e22;
+            font-weight: 700;
+            font-style: italic;
+        }
+        .fala-amarelo {
+            color: #f1c40f;
+            font-weight: 700;
+            font-style: italic;
+        }
+        .fala-marrom {
+            color: #8d6e63;
+            font-weight: 700;
+            font-style: italic;
+        }
+        .fala-vermelho-destaque {
+            color: #ff1744;
+            font-weight: 900;
+            font-size: 1.3rem;
+            font-style: italic;
+            text-shadow: 0 0 30px rgba(255, 23, 68, 0.4);
+            animation: pulsarDestaque 2s ease-in-out infinite;
             text-align: center;
-            padding: 1.5rem 0;
-            border-top: 1px solid rgba(255, 100, 20, 0.2);
-            border-bottom: 1px solid rgba(255, 100, 20, 0.2);
-            margin: 1.5rem 0;
-            font-size: 1.1rem;
-            color: #f0c860;
-            transition: all 0.3s ease;
-            background: rgba(255, 100, 20, 0.02);
-            border-radius: 8px;
         }
 
-        .citacao-dourado:hover {
-            color: #f0d870;
-            border-color: rgba(255, 100, 20, 0.35);
-            background: rgba(255, 100, 20, 0.04);
+        @keyframes pulsarDestaque {
+            0%,
+            100% {
+                text-shadow: 0 0 30px rgba(255, 23, 68, 0.4);
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 0 0 60px rgba(255, 23, 68, 0.6), 0 0 100px rgba(255, 23, 68, 0.2);
+                transform: scale(1.02);
+            }
         }
 
-        .citacao-dourado strong {
-            color: #ff8c42;
-            font-style: normal;
-            font-family: 'Cinzel', serif;
-        }
-
+        /* ===== SEPARADOR ===== */
         .separador-fogo {
             text-align: center;
             font-size: 1.1rem;
@@ -631,7 +627,7 @@
         }
 
         /* ============================================================
-           BOTÕES INTERATIVOS - PRÓXIMO CAPÍTULO
+           BOTÕES INTERATIVOS
         ============================================================ */
         .btn-proximo {
             display: inline-block;
@@ -670,7 +666,7 @@
         .btn-proximo:hover {
             transform: translateY(-3px) scale(1.02);
             border-color: #ff6a00;
-            box-shadow: 
+            box-shadow:
                 0 8px 40px rgba(255, 100, 20, 0.25),
                 inset 0 0 30px rgba(255, 100, 20, 0.05);
             background: linear-gradient(135deg, rgba(255, 100, 20, 0.25), rgba(255, 50, 10, 0.1));
@@ -686,7 +682,6 @@
             box-shadow: 0 2px 10px rgba(255, 100, 20, 0.15);
         }
 
-        /* ===== EFEITO DE FOGO NO BOTÃO ===== */
         .btn-proximo .fogo-texto {
             position: relative;
             z-index: 2;
@@ -704,7 +699,6 @@
             transform: translateX(6px) scale(1.2);
         }
 
-        /* ===== PARTÍCULAS DO BOTÃO ===== */
         .btn-proximo .particula-botao {
             position: absolute;
             border-radius: 50%;
@@ -734,7 +728,6 @@
             }
         }
 
-        /* ===== BOTÃO FIM DA HISTÓRIA ===== */
         .btn-proximo.fim {
             opacity: 0.6;
             cursor: default;
@@ -760,11 +753,17 @@
         }
 
         @keyframes brilhoFim {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.1); }
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
         }
 
-        /* ===== BOTÃO VOLTAR ===== */
         .btn-voltar {
             display: inline-block;
             margin-top: 2.5rem;
@@ -797,7 +796,6 @@
             box-shadow: 0 8px 30px rgba(255, 100, 20, 0.08);
         }
 
-        /* ===== RODAPÉ ===== */
         .footer-simbolo {
             text-align: center;
             font-size: 1.2rem;
@@ -809,7 +807,6 @@
             opacity: 0.6;
         }
 
-        /* ===== CONTROLE DE MÚSICA ===== */
         .music-control {
             position: fixed;
             bottom: 2rem;
@@ -859,7 +856,6 @@
             opacity: 1;
         }
 
-        /* ===== ANIMAÇÕES ===== */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -871,10 +867,18 @@
                 transform: translateY(0);
             }
         }
-        .delay-1 { animation-delay: 0.15s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.7s; }
-        .delay-4 { animation-delay: 1s; }
+        .delay-1 {
+            animation-delay: 0.15s;
+        }
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+        .delay-3 {
+            animation-delay: 0.7s;
+        }
+        .delay-4 {
+            animation-delay: 1s;
+        }
 
         ::-webkit-scrollbar {
             width: 6px;
@@ -927,28 +931,41 @@
             </button>
         </header>
 
+        <!-- ============================================================
+        PERFIL
+        ============================================================ -->
         <section class="fade-in delay-1">
             <h2>Perfil</h2>
             <div class="perfil-grid">
                 <div class="perfil-card">
-                    <h3>Físico</h3>
+                    <h3>Aparência</h3>
                     <ul>
-                        <li>· · ·</li>
+                        <li>Seu corpo possui uma pele de tonalidade cinza-clara.</li>
+                        <li>Uma cauda longa e fina acompanha seus movimentos, equilibrando-se naturalmente atrás dele e reforçando sua agilidade.</li>
+                        <li>Seu cabelo é um tanto único, com uma coloração branca e preta que o destaca entre os demais.</li>
                     </ul>
                 </div>
                 <div class="perfil-card">
                     <h3>Personalidade</h3>
                     <ul>
-                        <li>· · ·</li>
+                        <li>Quintana é um jovem carismático e corajoso.</li>
+                        <li>Está sempre disposto a proteger aqueles que ama e possui grande facilidade para fazer amizades com qualquer pessoa.</li>
+                        <li>Não se intimida diante de ninguém e costuma enfrentar qualquer desafio de cabeça erguida.</li>
+                        <li>Adora lutar e, em seu tempo livre, pode passar horas treinando sozinho, batendo no próprio ar.</li>
                     </ul>
                 </div>
             </div>
         </section>
 
+        <!-- ============================================================
+        CAPÍTULOS
+        ============================================================ -->
         <section class="fade-in delay-2">
             <h2>Capítulos</h2>
 
-            <!-- CAPÍTULO I -->
+            <!-- ============================================================
+            CAPÍTULO I
+            ============================================================ -->
             <div class="capitulo-card" id="capitulo1">
                 <div class="capitulo-header">
                     <img src="quintana_cap1.png" alt="Capítulo I" class="imagem-destaque" onerror="this.style.display='none'" />
@@ -964,21 +981,15 @@
 
                         <p>O recém-nascido chorava, enquanto seus pais o observavam com esperança. A mão de sua mãe se aproximava lentamente de seu filho ao tocar em seu rosto dizia com seus olhos brilhando:</p>
 
-                        <div class="citacao-roxo">
-                            <p><strong>— Quintana, meu bebê, você se tornará um grande homem no futuro. Sua mãe estará sempre consigo.</strong></p>
-                        </div>
+                        <p class="fala-rosa">— Quintana, meu bebê, você se tornará um grande homem no futuro. Sua mãe estará sempre consigo.</p>
 
                         <p>As manhãs se passaram, e Quintana, a cada dia, crescia mais e mais. Certo dia, enquanto seus pais brincavam com ele, Quintana pronunciou suas primeiras palavras:</p>
 
-                        <div class="citacao-vermelho">
-                            <p><strong>— Ma... ma... mamã!</strong></p>
-                        </div>
+                        <p class="fala-vermelho">— Ma... ma... mamã!</p>
 
                         <p>Naquele exato momento, os olhos de seus pais brilharam. Um sorriso puro e gentil iluminou o rosto de sua mãe, enquanto seu pai, emocionado, repetia:</p>
 
-                        <div class="citacao-dourado">
-                            <p><strong>— Viu só, querida? Agora diga: papai!</strong></p>
-                        </div>
+                        <p class="fala-roxo">— Viu só, querida? Agora diga: papai!</p>
 
                         <p>Muito tempo se passou, e Quintana já era capaz de engatinhar. Em um dia qualquer, enquanto passeava com sua mãe por um vilarejo próximo de sua casa, observava atentamente todos os cantos. Percebia que quase ninguém era igual a ele; cada pessoa possuía características diferentes. Aquela diversidade lhe parecia algo realmente incrível.</p>
 
@@ -1003,7 +1014,9 @@
                 </div>
             </div>
 
-            <!-- CAPÍTULO II -->
+            <!-- ============================================================
+            CAPÍTULO II
+            ============================================================ -->
             <div class="capitulo-card" id="capitulo2">
                 <div class="capitulo-header">
                     <img src="quintana_cap2.png" alt="Capítulo II" class="imagem-destaque" onerror="this.style.display='none'" />
@@ -1023,28 +1036,23 @@
 
                         <p>Quintana, apesar dos muitos amigos que tinha na aldeia, preferia passar esses momentos apenas com seus pais. Com o tempo passando e os momentos felizes cada vez só aumentando, o pai de Quintana o faz uma pergunta bem séria:</p>
 
-                        <div class="citacao-dourado">
-                            <p><strong>— Quintana, meu filho, para o que você busca poder?</strong></p>
-                        </div>
+                        <p class="fala-laranja">— Quintana, meu filho, para o que você busca poder?</p>
 
-                        <div class="citacao-roxo">
-                            <p><strong>— Meu pai, eu desejo poder pois quero conhecer o mundo, me aventurar, mas acima disso, proteger aqueles que amo. E isso inclui vocês.</strong></p>
-                        </div>
+                        <p class="fala-vermelho">— Meu pai, eu desejo poder pois quero conhecer o mundo, me aventurar, mas acima disso, proteger aqueles que amo. E isso inclui vocês.</p>
 
                         <p>A voz, as expressões, os gestos, tudo indicava que seu filho estava falando sério. Passou alguns minutos calado e logo o questionou mais uma vez, mas dessa vez tirando uma espada, uma manopla e um arco de um baú.</p>
 
-                        <div class="citacao-dourado">
-                            <p><strong>— Meu filho, qual dessas armas mais o atrai? Essa resposta decidirá se eu o treinarei ou não.</strong></p>
-                            <p><strong>— Eu escolho a manopla, meu pai.</strong></p>
-                            <p><strong>— Por que não escolheu a espada ou o arco?</strong></p>
-                            <p><strong style="color: #e74c3c;">— Não escolhi a espada pois não busco seguir o caminho da espada, prefiro evitar matar pessoas. E o arco, pois não me sinto confortável com ele.</strong></p>
-                        </div>
+                        <p class="fala-laranja">— Meu filho, qual dessas armas mais o atrai? Essa resposta decidirá se eu o treinarei ou não.</p>
+
+                        <p class="fala-vermelho">— Eu escolho a manopla, meu pai.</p>
+
+                        <p class="fala-laranja">— Por que não escolheu a espada ou o arco?</p>
+
+                        <p class="fala-vermelho">— Não escolhi a espada pois não busco seguir o caminho da espada, prefiro evitar matar pessoas. E o arco, pois não me sinto confortável com ele.</p>
 
                         <p>O pai apenas aceitou a resposta de seu filho, mesmo tentando esconder o pequeno sorriso em seu rosto:</p>
 
-                        <div class="citacao-dourado">
-                            <p><strong>— Vá dormir, tá bom? Precisará acordar bem cedo amanhã.</strong></p>
-                        </div>
+                        <p class="fala-laranja">— Vá dormir, tá bom? Precisará acordar bem cedo amanhã.</p>
 
                         <p>O fogo na lareira logo se apagava, o calor logo se esvaziava daquela pequena sala, aquela casa, aquela cabana passava uma harmonia, um sentimento tão bom. Uma pena que a vida sempre vem com surpresas e desgraças sobre a vida de qualquer um, não é?</p>
 
@@ -1054,9 +1062,7 @@
 
                         <p>Por dentro, Quintana repetia, corajosamente, que iria proteger sua mãe. Porém, seu corpo tremia. Ele cerrava os punhos, tentando fazer o tremor parar. Sua mãe, vendo o estado do filho, apenas o abraçou e sussurrou:</p>
 
-                        <div class="citacao-roxo">
-                            <p><strong>— Meu pequeno e corajoso, está tudo bem. Tudo ficará bem. Você não precisa me proteger, pois eu o protegerei. Afinal, este é o nosso papel.</strong></p>
-                        </div>
+                        <p class="fala-roxo">— Meu pequeno e corajoso, está tudo bem. Tudo ficará bem. Você não precisa me proteger, pois eu o protegerei. Afinal, este é o nosso papel.</p>
 
                         <p>Quintana apenas ouviu em completo silêncio.</p>
 
@@ -1066,9 +1072,138 @@
 
                         <p>Quando o som da batalha enfim cessou, uma porta foi aberta. Seu pai estava vivo, apenas com alguns ferimentos. Sua mãe, ao vê-lo naquele estado, começou a chorar, mas suas lágrimas eram de alívio, pois todos haviam sobrevivido.</p>
 
-                        <div class="citacao-dourado" style="font-size: 1.2rem;">
-                            <p><strong>Diante de tudo aquilo, Quintana prometeu a si mesmo que um dia seria tão forte quanto seu pai, protegendo todos aqueles que amava.</strong></p>
+                        <p style="font-size: 1.2rem; color: #ff8c42; font-weight: 700; text-align: center;">Diante de tudo aquilo, Quintana prometeu a si mesmo que um dia seria tão forte quanto seu pai, protegendo todos aqueles que amava.</p>
+
+                        <div class="separador-fogo">
+                            ✦ ⋆｡ ﾟ ☁︎｡ ⋆｡ ﾟ ☾ ﾟ ｡ ⋆ — Próximo Capítulo — ⋆｡ ﾟ ☁︎｡ ⋆｡ ﾟ ☾ ﾟ ｡ ⋆ ✦
                         </div>
+                    </div>
+                    <button class="btn-proximo" onclick="abrirCapitulo('capitulo3')">
+                        <span class="fogo-texto">
+                            <span>Próximo Capítulo</span>
+                            <span class="icone">→</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ============================================================
+            CAPÍTULO III
+            ============================================================ -->
+            <div class="capitulo-card" id="capitulo3">
+                <div class="capitulo-header">
+                    <img src="quintana_cap3.png" alt="Capítulo III" class="imagem-destaque" onerror="this.style.display='none'" />
+                    <div>
+                        <h3>Capítulo III — A Juventude é Bela, Não?</h3>
+                        <blockquote>"A força não está apenas nos punhos, mas também no coração."</blockquote>
+                        <span class="abrir-indicador">▼ Clique para ler</span>
+                    </div>
+                </div>
+                <div class="capitulo-body" id="body3">
+                    <div class="texto">
+                        <p>Dias se passaram após o infeliz acidente. Seus pais estavam ocupados reparando os estragos que aqueles marginais haviam causado. Quintana tentava ajudar com o que podia, carregando pequenas ferramentas, recolhendo pedaços de madeira e entregando os materiais que seus pais pediam. Aquela visão sempre alegrava seus pais; verem seu filho dando o máximo para ajudá-los os reconfortava e lhes dava forças para continuar.</p>
+
+                        <p>Quando chegava o meio-dia, almoçavam todos juntos, conversando, rindo e aproveitando a companhia uns dos outros. Mesmo depois de tudo o que havia acontecido, faziam questão de manter aquele momento em família, como se quisessem mostrar que nenhuma dificuldade seria capaz de tirar a felicidade de seu lar. Eram nesses momentos que Quintana mais gostava de ouvir as histórias de seu pai e as risadas de sua mãe.</p>
+
+                        <p>Após o almoço, Quintana era levado por seu pai para treinar. Os treinamentos seguiam até o entardecer. No início, aprendia apenas a manter a postura, controlar a respiração e fortalecer o próprio corpo. Seu pai dizia que, antes de aprender a lutar, era preciso aprender a permanecer de pé. Aos poucos, passou a praticar golpes simples, equilíbrio e disciplina, sempre sob o olhar atento de seu tutor.</p>
+
+                        <p>Quintana, devido à intensidade dos treinos, sempre dormia com o corpo inteiro dolorido, os braços pesados e as pernas cansadas. Ainda assim, nunca reclamava. Toda vez que caía durante um exercício, levantava-se novamente sem dizer uma palavra. Sua determinação em se tornar mais forte rompia a barreira da dor, pois acreditava que, um dia, seria capaz de proteger todos aqueles que amava, assim como seu pai fazia.</p>
+
+                        <p>No dia seguinte, ao acordar, Quintana já começou a ajudar seus pais logo pela manhã. Mas, diferente do dia anterior, seu pai estaria ocupado com o trabalho. Quintana não reclamou nem nada, apenas viu seu pai partir enquanto tomava um delicioso suco de laranja com sua mãe. Após terminar de ajudá-la com os afazeres da casa, Quintana se dirigiu até o vilarejo.</p>
+
+                        <p>Caminhando pelas ruas de pedra, logo um círculo de crianças se reunia ao redor do jovem Quintana. Ele possuía muitos amigos e era muito bem visto por eles, tudo graças à sua aparência e personalidade. Querendo ou não, Quintana era um garoto atraente. Seu olhar e sua postura transmitiam confiança e, além disso, era alguém muito carismático. Alguns o invejavam, outros o respeitavam, mas quase todos gostavam de sua companhia.</p>
+
+                        <p>Ele e seus amigos caminhavam pelas ruas sorrindo, rindo e conversando sobre as mais diversas coisas. Passavam pelas barracas do vilarejo, cumprimentavam alguns comerciantes e brincavam uns com os outros durante o caminho. Em determinado momento, um dos garotos correu desesperado em direção a Quintana, ofegante e assustado:</p>
+
+                        <p class="fala-amarelo">— Quin... Quint... Quintana! O Julius... o Julius está sendo espancado!</p>
+
+                        <p>Julius, um dos amigos do grupo, estava sendo agredido por um menino que já era mal falado por todos do vilarejo devido à sua agressividade excessiva.</p>
+
+                        <p>Ao ouvir aquilo, Quintana correu imediatamente até o local. Assim que viu a cena com os próprios olhos, não pensou duas vezes. Avançou em direção ao agressor e lhe desferiu uma forte bicuda, fazendo-o cair no chão. Graças ao treinamento que vinha recebendo de seu pai, Quintana já era mais forte do que a maioria das crianças da aldeia.</p>
+
+                        <p>Sem dizer uma palavra, estendeu a mão para Julius e o ajudou a se levantar. Depois voltou seu olhar para o garoto caído e o alertou, em um tom firme:</p>
+
+                        <p class="fala-vermelho">— Da próxima vez que você fizer algo com qualquer um dos meus amigos, você pagará o preço na mesma moeda.</p>
+
+                        <p>O menino, ainda no chão, encarava Quintana com um olhar raivoso. Um ódio profundo podia ser visto em seus olhos, mas, mesmo assim, não fez nada. Apenas se levantou, limpou a poeira das roupas e foi embora, pois sabia que não tinha a menor chance contra Quintana naquele momento, ainda mais com todos os seus amigos por perto.</p>
+
+                        <p>Apesar da situação que acabara de acontecer, o ambiente logo voltou ao normal graças a Quintana. Todos voltaram a rir e a sorrir como se nada tivesse ocorrido. Pouco depois, ao passarem por uma pequena barraca de maçãs, juntaram as moedas que cada um carregava para comprar algumas frutas. Sentaram-se próximos dali, dividindo as maçãs entre todos enquanto conversavam, faziam brincadeiras e disputavam quem conseguiria arremessar o miolo da maçã mais longe.</p>
+
+                        <p>O sol logo começava a desaparecer no horizonte. Como de costume, todas as crianças se reuniram em um pequeno morro para observar o entardecer. Alguns se sentaram sobre a grama, enquanto Quintana preferiu subir em uma árvore próxima, de onde podia enxergar toda a paisagem do vilarejo banhada pelos últimos raios de sol. O vento soprava calmamente, balançando os galhos e trazendo consigo uma agradável sensação de tranquilidade. Naquele instante, Quintana apenas observava o céu mudar de cor, sem dizer uma palavra. Para ele, aqueles fins de tarde ao lado de seus amigos eram momentos simples, mas que guardaria para sempre em sua memória.</p>
+
+                        <p>Após o sol enfim desaparecer por completo no horizonte, todos os meninos retornaram para suas casas. Quintana caminhou de volta com um sorriso no rosto. Apesar do cansaço daquele dia, deitou-se em sua cama feliz, adormecendo rapidamente enquanto pensava em tudo o que havia vivido ao lado de seus amigos.</p>
+
+                        <p>Dias se passaram. Semanas se passaram. Meses se passaram, até que, enfim, longos nove anos haviam se passado. Durante todo esse tempo, a rotina de Quintana permaneceu praticamente a mesma. Seus dias eram divididos entre os treinamentos com seu pai, ajudar seus pais com os afazeres da casa e passar o tempo ao lado de seus amigos. De vez em quando, alguns festivais aconteciam no vilarejo, mas não era algo que realmente mudasse sua rotina.</p>
+
+                        <p>Quanto ao garoto com quem havia brigado no passado, ele nunca mais tentou fazer nada contra Quintana. Limitava-se apenas a observá-lo de longe com um olhar de desdém. Quintana, por sua vez, nunca lhe deu importância. Para ele, havia coisas muito mais valiosas com as quais se preocupar do que guardar rancor.</p>
+
+                        <div class="separador-fogo">
+                            ✦ ⋆｡ ﾟ ☁︎｡ ⋆｡ ﾟ ☾ ﾟ ｡ ⋆ — Próximo Capítulo — ⋆｡ ﾟ ☁︎｡ ⋆｡ ﾟ ☾ ﾟ ｡ ⋆ ✦
+                        </div>
+                    </div>
+                    <button class="btn-proximo" onclick="abrirCapitulo('capitulo4')">
+                        <span class="fogo-texto">
+                            <span>Próximo Capítulo</span>
+                            <span class="icone">→</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ============================================================
+            CAPÍTULO IV
+            ============================================================ -->
+            <div class="capitulo-card" id="capitulo4">
+                <div class="capitulo-header">
+                    <img src="quintana_cap4.png" alt="Capítulo IV" class="imagem-destaque" onerror="this.style.display='none'" />
+                    <div>
+                        <h3>Capítulo IV — Então Esse é o Preço?</h3>
+                        <blockquote>"O preço da força às vezes é mais alto do que imaginamos."</blockquote>
+                        <span class="abrir-indicador">▼ Clique para ler</span>
+                    </div>
+                </div>
+                <div class="capitulo-body" id="body4">
+                    <div class="texto">
+                        <p>Quintana agora já era um adulto. Seus pais estavam tão felizes com o homem que seu filho havia se tornado.</p>
+
+                        <p class="fala-roxo">— Meu filho... (com algumas lágrimas no rosto) estou tão orgulhosa de você. Você está tão grande, tão forte.</p>
+
+                        <p>— Enfim, finalmente chegou a hora, meu filho. Finalmente você se tornou um adulto.</p>
+
+                        <p>Quintana, um pouco sem jeito, apenas tentava acalmar seus pais. Seu pai entregou sua querida manopla para o filho como presente, já sua mãe o presenteou com um manto que havia costurado semanas atrás. Quintana olhava para os dois quase chorando de alegria. Para ele, sua família era tudo. Logo, o bolo foi cortado, as velas sopradas. O dia, apesar de tudo, foi calmo. Todos os seus amigos deram parabéns para ele e, logo à noite, festejava com seus pais. Ao adormecer, observava a grande e majestosa lua, pensando sobre sua vida.</p>
+
+                        <p class="fala-vermelho">— O que eu devo fazer agora?</p>
+
+                        <p class="fala-vermelho">— Será que já estou forte o bastante para protegê-los?</p>
+
+                        <p class="fala-vermelho">— A lua é bem bonita, né? Haha.</p>
+
+                        <p class="fala-vermelho">— Eu não sei ao certo o que vou fazer por agora, mas devo continuar treinando.</p>
+
+                        <p>Quintana, logo pela manhã, saiu de casa para buscar algum trabalho ou algo para fazer.</p>
+
+                        <p>Ficou horas vagando pelo vilarejo, mas não conseguiu encontrar nada. Voltou para casa um tanto decepcionado, mas não desanimou. Ele sabia que, uma hora ou outra, encontraria algo. No dia seguinte, aconteceu o mesmo. Quintana não conseguiu encontrar trabalho em sua aldeia. Então surgiu a ideia de viajar para outro vilarejo para tentar ganhar a vida e, quem sabe, lá conseguir obter mais formas de se tornar forte. Ao falar com seus pais sobre isso, apesar de um tanto quanto relutantes, eles o apoiaram.</p>
+
+                        <p class="fala-roxo">— Sempre que precisar, meu filho, retorne para nós. Eu e seu pai o ajudaremos com o que precisar.</p>
+
+                        <p>Quintana logo partiu. Entretanto, enquanto caminhava, viu um jovem estranho que aparentava estar meio machucado. Quintana logo se aproximou dele. Seu nome era Sora. Apesar das aparências, para Quintana, Sora era completamente diferente de todos que já havia visto, e isso o intrigava. Apesar disso, não podia desviar de seu objetivo. Conversa vai, conversa vem, e logo Quintana partiu. Apenas disse a Sora:</p>
+
+                        <p class="fala-vermelho">— Se precisar de ajuda, pode pedir ajuda para Moon. Ela é minha mãe. Use meu nome, e ela o ajudará. Infelizmente, terei de partir.</p>
+
+                        <p>Infelizmente, não estavam somente eles dois. Aquele que mais odiava Quintana havia ouvido essa conversa e abriu um sorriso maléfico.</p>
+
+                        <p>Enquanto Quintana caminhava pela floresta, não aparentava estar com medo, mesmo o ambiente sendo algo que, para muitos, seria assustador.</p>
+
+                        <p>A barriga de Quintana passou a roncar. Ele estava com muita fome enquanto pegava um pão para comer. Quintana foi repentinamente atacado. Uma lâmina perfurou seu peito, não dando tempo para reação. Enquanto o sangue escorria pela lâmina, Quintana caiu sobre o som de pássaros. Apenas ouviu:</p>
+
+                        <p class="fala-marrom">— FINALMENTE! FINALMENTE! VEJA COMO TUDO ACABOU! ISSO QUE DÁ SE MEXER COMIGO HAHAHAHA!</p>
+
+                        <p>Quintana não conseguia dizer nada, apenas caiu em silêncio, pensando se havia falhado em algo. O que ele fez de errado?</p>
+
+                        <p class="fala-vermelho-destaque">ME DESCULPE!!! EU NÃO CONSEGUI DEIXAR VOCÊS AINDA MAIS ORGULHOSOS DE MIM…</p>
+
+                        <div class="separador-fogo">
+                            ✦ ⋆｡ ﾟ ☁︎｡ ⋆｡ ﾟ ☾ ﾟ ｡ ⋆ — Fim da História — ⋆｡ ﾟ ☁︎｡ ⋆｡ ﾟ ☾ ﾟ ｡ ⋆ ✦
                         </div>
                     </div>
                     <button class="btn-proximo fim">
@@ -1116,8 +1251,8 @@
                 r: Math.random() * 1.8 + 0.5,
                 alpha: Math.random() * 0.8 + 0.2,
                 speed: Math.random() * 0.008 + 0.003,
-                cor: Math.random() > 0.7 ? 
-                    `rgba(255, ${100 + Math.random() * 80}, 20, ` : 
+                cor: Math.random() > 0.7 ?
+                    `rgba(255, ${100 + Math.random() * 80}, 20, ` :
                     `rgba(255, ${180 + Math.random() * 60}, 150, `
             });
         }
@@ -1403,7 +1538,7 @@
         }
 
         // ============================================================
-        // CAPÍTULOS
+        // CAPÍTULOS EXPANSÍVEIS
         // ============================================================
         function abrirCapitulo(id) {
             const card = document.getElementById(id);
@@ -1484,8 +1619,8 @@
             });
         });
 
-        console.log('🔥 Quintana — Fogo & Leão — página carregada.');
-        console.log('🔥 Botões interativos com efeitos de fogo!');
+        console.log('🔥 Quintana — Fogo & Leão — página carregada com 4 capítulos!');
+        console.log('🎨 Todas as falas coloridas conforme solicitado!');
     </script>
 </body>
 </html>
